@@ -1,0 +1,19 @@
+{
+  "expo": {
+    "name": "Kontroll",
+    "slug": "Kontroll",
+    "version": "1.0.0",
+    "icon": "./src/assets/icon.png",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "orientation": "portrait",
+    "android": {
+      "package": "com.kewinabreu.kontroll",
+      "adaptiveIcon":{
+        "foregroundImage": "./src/assets/icon.png"
+      },
+      "icon":"./src/assets/icon.png"
+    }
+  }
+}
