@@ -3,6 +3,7 @@ import {StyleSheet,SafeAreaView, StatusBar, Linking, ScrollView, Text, Image, To
 
 import Card from "../../components/Card";
 import Card2 from '../../components/CardHome2'
+import CardRed from '../../components/CardRed'
 
 
 import Ronda from "../../assets/ronda.png"
@@ -13,6 +14,10 @@ import Config from '../../assets/config.png'
 import Replace from '../../assets/replace.png'
 import Star from '../../assets/star.png'
 import Draw from '../../assets/bg2.png'
+import Sirene from '../../assets/sirene.png'
+import Calendar from '../../assets/calendar.png'
+import ApoioImg from '../../assets/apoio.png'
+import Devices from '../../assets/devices.png'
 
 import BtnFluter from '../../components/BtnFlutter'
 import WebL from '../../assets/web.png'
@@ -66,11 +71,23 @@ export default function Home({navigation}){
     }
 
     function Avaliacao(){
-        alert('Avaliação')
+        alert('Reservas')
     }
 
     function Plantao(){
         navigation.navigate('Plantao')
+    }
+
+    function Panico(){
+        Linking.openURL(`tel:190`);
+    }
+
+    function FaleSindico(){
+        Linking.openURL(`https://api.whatsapp.com/send?phone=5582981129518&text=Olá%20Sindico!`);
+    }
+
+    function Apoio(){
+        navigation.navigate('Apoio')
     }
 
     // function REMOVEASYNC(){
@@ -99,15 +116,19 @@ export default function Home({navigation}){
 
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={{width:"95%",marginLeft:7, marginBottom:20 }}>
                 {/* <Card name={"REMOVER EMPRESA"} icon={Ronda} press={REMOVEASYNC}/> */}
-                <Card name={"Vigilante"} icon={Ronda} press={PageScan}/>
+                <Card name={"Ronda   "} icon={Ronda} press={PageScan}/>
                 <Card name={"Livro de ocorrências"} icon={Ocorrencia} press={Ocorrencias}/>
-                <Card name={"Avaliação"} icon={Star} press={Avaliacao}/>
+                <Card name={"Dispositivos"} icon={Devices} press={Avaliacao}/>
+                <Card name={"Reservas"} icon={Calendar} press={Avaliacao}/>
+                <Card name={"Solicitar apoio"} icon={ApoioImg} press={Apoio}/>
+                <Card name={"Fale sindico"} icon={Star} press={FaleSindico}/>
                 {/* <Card name={"Configurações"} icon={Config} press={Perfil}/> */}
             </ScrollView>
 
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={{width:"95%",marginLeft:7, marginBottom:20 }}>
                 <Card2 name='Trocar Plantão' icon={Replace} press={Plantao}/>
                 <Card2 name='Adm' icon={Adm} press={IrAdm}/>
+                <CardRed name='Pânico' icon={Sirene} press={Panico}/>
                 <Card2 name='Configurações' icon={Config} press={Perfil}/>
             </ScrollView>
             

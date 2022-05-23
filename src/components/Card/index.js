@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     icon:{
         width:33,
         height:34,
-        marginRight:20,
+        marginRight:10,
         resizeMode:"contain"
     }
     

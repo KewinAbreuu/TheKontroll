@@ -13,6 +13,7 @@ import UserPerfil from '../../src/screens/UserPerfil'
 import EmpresaConfig from '../../src/screens/Config'
 import Plantao from '../../src/screens/Plantao'
 import Ocorrencia from '../../src/screens/Ocorrencias'
+import Apoio from '../../src/screens/Apoio'
 
 export const Routes = ()=>{
     const Stack = createNativeStackNavigator();
@@ -29,6 +30,7 @@ export const Routes = ()=>{
                 <Stack.Screen name='EmpresaConfig' component={EmpresaConfig}/>
                 <Stack.Screen name='Plantao' component={Plantao}/>
                 <Stack.Screen name='Ocorrencia' component={Ocorrencia}/>
+                <Stack.Screen name='Apoio' component={Apoio}/>
             </Stack.Navigator>
         </NavigationContainer>
     )

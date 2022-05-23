@@ -6,7 +6,7 @@ export default function CardHome2({name, icon, press}){
 
 
     return(
-        <TouchableOpacity style={styles.container} onPress={press}>
+        <TouchableOpacity style={styles.container} onPress={press} >
             
             <View style={{flexDirection:"column", alignItems:"center"}}>
                 <Image source={icon} style={styles.icon}/>
@@ -23,18 +23,17 @@ const styles = StyleSheet.create({
       flexDirection:'column',
       width:200,
       height:250,
-      backgroundColor: '#4169E1',
+      backgroundColor:'#447CE0',
       alignItems: 'center',
       justifyContent: "center",
       borderRadius:20,
-      
       marginRight:10,
     },
     icon:{
         width:40,
         height:45,
         marginBottom:40,
-        resizeMode:"contain"
+        resizeMode:"contain",
     }
     
   });
