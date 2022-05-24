@@ -90,9 +90,9 @@ export default function Home({navigation}){
         navigation.navigate('Apoio')
     }
 
-    // function REMOVEASYNC(){
-    //     AsyncStorage.removeItem('Empresa')
-    // }
+    function REMOVEASYNC(){
+        AsyncStorage.removeItem('Empresa')
+    }
 
     return(
     <>
@@ -115,7 +115,7 @@ export default function Home({navigation}){
             </TouchableOpacity>
 
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={{width:"95%",marginLeft:7, marginBottom:20 }}>
-                {/* <Card name={"REMOVER EMPRESA"} icon={Ronda} press={REMOVEASYNC}/> */}
+                <Card name={"REMOVER EMPRESA"} icon={Ronda} press={REMOVEASYNC}/>
                 <Card name={"Ronda   "} icon={Ronda} press={PageScan}/>
                 <Card name={"Livro de ocorrências"} icon={Ocorrencia} press={Ocorrencias}/>
                 <Card name={"Dispositivos"} icon={Devices} press={Avaliacao}/>
