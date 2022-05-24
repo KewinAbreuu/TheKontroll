@@ -1,4 +1,4 @@
-# Bem-vindo ao TheKontroll </hr>
+# Bem-vindo ao TheKontroll ! </hr>
 <p>O TheKontroll é um sistema de gestão de condomínios, onde os usuarios tem total controle de sua gestão!<p>
   
 ## 💻 Funcionalidades</hr>
