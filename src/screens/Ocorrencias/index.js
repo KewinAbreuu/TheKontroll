@@ -106,18 +106,18 @@ export default function Ocorrencia({navigation}){
     <ScrollView>
         <SafeAreaView style={styles.container} > 
     
-    <KeyboardAvoidingView contentContainerStyle={{width:300, flex:1}} behavior="position" enabled>
+    <KeyboardAvoidingView contentContainerStyle={{ flex:1}} behavior="position" enabled>
     <Text style={{color:"#000", fontSize:20,fontWeight:"bold", marginBottom:30, alignSelf:"center"}}>Livro de Ocorrências</Text>
 
             
-            <View style={{flexDirection:"row"}}>
+            <View style={{flexDirection:"row", width:"90%"}}>
                 <View style={{flexDirection:"column", width:"50%", marginRight:5}}>
                     <Text style={styles.texto}>Data:</Text>
                     <TextInput placeholder={date} style={styles.inputX} onChangeText={setCargo}   editable={false} selectTextOnFocus={false}></TextInput>
                 </View>
                 <View style={{flexDirection:"column", width:"50%"}}>
                     <Text style={styles.texto}>Bloco:</Text>
-                    <TextInput placeholder={bloco} style={styles.inputX} onChangeText={setBloco} value={bloco}></TextInput>
+                    <TextInput placeholder="Bloco" style={styles.inputX} onChangeText={setBloco} value={bloco}></TextInput>
                 </View>
                 
             </View>
@@ -213,7 +213,8 @@ const styles = StyleSheet.create({
         justifyContent:"center",
         borderRadius:30,
         marginTop:15,
-        marginBottom:5
+        marginBottom:5,
+        alignSelf:"center"
     },
  
   });

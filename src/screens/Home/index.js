@@ -91,6 +91,10 @@ export default function Home({navigation}){
         navigation.navigate('Apoio')
     }
 
+    function Reservas(){
+        navigation.navigate('Reservas')
+    }
+
     function REMOVEASYNC(){
         AsyncStorage.removeItem('Empresa')
     }
@@ -111,7 +115,7 @@ export default function Home({navigation}){
             </SafeAreaView>
         
             <TouchableOpacity style={styles.search} onPress={SuporteWhats}>
-                <Text style={{fontWeight:"bold"}}> Precisa de Ajuda? </Text>
+                <Text style={{fontWeight:"bold", color:"#fff"}}> Precisa de Ajuda? </Text>
                 <Image source={Suport} style={{width:30,height:30}}/>
             </TouchableOpacity>
 
@@ -119,7 +123,7 @@ export default function Home({navigation}){
                 <Card name={"Ronda   "} icon={Ronda} press={PageScan}/>
                 <Card name={"Livro de ocorrências"} icon={OcorrenciaImg} press={Ocorrencias}/>
                 <Card name={"Dispositivos"} icon={Devices} press={Avaliacao}/>
-                <Card name={"Reservas"} icon={Calendar} press={Avaliacao}/>
+                <Card name={"Reservas"} icon={Calendar} press={Reservas}/>
                 <Card name={"Correspondência"} icon={Mail} press={Avaliacao}/>
                 <Card name={"Solicitar apoio"} icon={ApoioImg} press={Apoio}/>
                 <Card name={"Fale sindico"} icon={Star} press={FaleSindico}/>
