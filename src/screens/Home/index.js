@@ -7,7 +7,7 @@ import CardRed from '../../components/CardRed'
 
 
 import Ronda from "../../assets/ronda.png"
-import Ocorrencia from "../../assets/ocorrencia.png"
+import OcorrenciaImg from "../../assets/ocorrencia.png"
 import Adm from '../../assets/adm.png'
 import Suport from '../../assets/suport.png'
 import Config from '../../assets/config.png'
@@ -18,6 +18,7 @@ import Sirene from '../../assets/sirene.png'
 import Calendar from '../../assets/calendar.png'
 import ApoioImg from '../../assets/apoio.png'
 import Devices from '../../assets/devices.png'
+import Mail from '../../assets/mail.png'
 
 import BtnFluter from '../../components/BtnFlutter'
 import WebL from '../../assets/web.png'
@@ -103,7 +104,7 @@ export default function Home({navigation}){
 
             <Text style={{marginLeft:20, fontSize:26}}>Olá,</Text>
             <Text style={{marginLeft:20, fontSize:26, fontWeight:"bold"}}>{funcionario}</Text>
-            <Text style={{marginLeft:20, fontSize:16, color:"#4169E1"}}>Condomínio Life Kontroll</Text>
+            <Text style={{marginLeft:20, fontSize:16, color:"#4169E1"}}>TheKontroll</Text>
 
             <SafeAreaView style={styles.banner}>
                 <Image source={Draw} style={{width:270, height:170}}/>
@@ -115,13 +116,15 @@ export default function Home({navigation}){
             </TouchableOpacity>
 
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={{width:"95%",marginLeft:7, marginBottom:20 }}>
-                <Card name={"REMOVER EMPRESA"} icon={Ronda} press={REMOVEASYNC}/>
                 <Card name={"Ronda   "} icon={Ronda} press={PageScan}/>
-                <Card name={"Livro de ocorrências"} icon={Ocorrencia} press={Ocorrencias}/>
+                <Card name={"Livro de ocorrências"} icon={OcorrenciaImg} press={Ocorrencias}/>
                 <Card name={"Dispositivos"} icon={Devices} press={Avaliacao}/>
                 <Card name={"Reservas"} icon={Calendar} press={Avaliacao}/>
+                <Card name={"Correspondência"} icon={Mail} press={Avaliacao}/>
                 <Card name={"Solicitar apoio"} icon={ApoioImg} press={Apoio}/>
                 <Card name={"Fale sindico"} icon={Star} press={FaleSindico}/>
+                <Card name={"REMOVER EMPRESA"}  press={REMOVEASYNC}/>
+
                 {/* <Card name={"Configurações"} icon={Config} press={Perfil}/> */}
             </ScrollView>
 

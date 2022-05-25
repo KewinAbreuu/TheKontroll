@@ -2,7 +2,7 @@
 
 
 import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, TouchableOpacity, Button, TextInput } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity, Button, TextInput, Alert } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 
 import firebase from '../../firebaseConnection';
@@ -94,12 +94,28 @@ async function getData(){
       Cargo:cargo
     })
     .then(()=>{
-        alert('sucesso')
+      Alert.alert(
+        'TheKontroll',
+        'Ronda Realizada com Sucesso!', [
+        {
+          text: 'OK',
+          onPress: () => navigation.navigate('Home')
+        },
+      ],
+        )
         setDesc('')
         setQr('Aponte a camera para o QR Code')
     })
     .catch(()=>{
-        alert('Erro')
+      Alert.alert(
+        'TheKontroll',
+        'Error, Tente Novamente!', [
+        {
+          text: 'OK',
+          onPress: () => navigation.navigate('Home')
+        },
+      ],
+        )
     })
 
     // navigation.navigate('Home')

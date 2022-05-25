@@ -1,5 +1,5 @@
 import react, {useState, useEffect} from "react";
-import {StyleSheet,SafeAreaView, StatusBar,Text, View, Image, TextInput, TouchableOpacity, ScrollView}from 'react-native'
+import {StyleSheet,SafeAreaView, StatusBar,Text, View, Image, TextInput, TouchableOpacity, ScrollView, Alert}from 'react-native'
 
 import Header from "../../components/Header";
 
@@ -8,6 +8,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {KeyboardAvoidingView} from 'react-native';
 
 import firebase from '../../firebaseConnection';
+
 
 
 export default function Ocorrencia({navigation}){
@@ -79,8 +80,18 @@ export default function Ocorrencia({navigation}){
         })
         .then(()=>{
             setDesc('')
-            alert('Ocorrencia Salva com Sucesso!')
-            navigation.navigate('Home')
+            // alert("Ocorrência Feita com Sucesso!")
+
+        Alert.alert(
+        'TheKontroll',
+        'Ocorrência Realizada com Sucesso!', [
+        {
+          text: 'OK',
+          onPress: () => navigation.navigate('Home')
+        },
+      ],
+        )
+            // navigation.navigate('Home')
         })
         .catch((e)=>{
             alert(e)
@@ -94,7 +105,6 @@ export default function Ocorrencia({navigation}){
     <Header/>
     <ScrollView>
         <SafeAreaView style={styles.container} > 
-        
     
     <KeyboardAvoidingView contentContainerStyle={{width:300, flex:1}} behavior="position" enabled>
     <Text style={{color:"#000", fontSize:20,fontWeight:"bold", marginBottom:30, alignSelf:"center"}}>Livro de Ocorrências</Text>
@@ -113,7 +123,7 @@ export default function Ocorrencia({navigation}){
             </View>
 
             <Text style={styles.texto}>Tipo de ocorrência:</Text>
-            <TextInput style={styles.inputY} onChangeText={setOcorrencia}  value={ocorrencia}></TextInput>
+            <TextInput style={styles.inputY} onChangeText={setOcorrencia} placeholder="Ex: leve, média, grave..." value={ocorrencia}></TextInput>
 
             <Text style={styles.texto}>Titulo:</Text>
             <TextInput style={styles.input} onChangeText={setTitulo}  value={titulo}></TextInput>

@@ -2,7 +2,7 @@
 
 
 import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, TouchableOpacity, Button, TextInput } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity, Button, TextInput, Alert } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -30,7 +30,14 @@ export default function Config({navigation}) {
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
     setConfigEmpresa(data);
-    alert("Selecionado")
+    Alert.alert(
+      'TheKontroll',
+      'Qr Code Selecionado!', [
+      {
+        text: 'OK',
+      },
+    ],
+      )
   };
 
   if (hasPermission === null) {

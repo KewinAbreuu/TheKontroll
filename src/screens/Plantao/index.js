@@ -1,5 +1,5 @@
 import react, {useState, useEffect} from "react";
-import {StyleSheet,SafeAreaView, StatusBar,Text, View, Image, TextInput, TouchableOpacity, ScrollView}from 'react-native'
+import {StyleSheet,SafeAreaView, StatusBar,Text, View, Image, TextInput, TouchableOpacity, ScrollView, Alert}from 'react-native'
 import BtnFlutter from "../../components/BtnFlutter";
 
 import Header from "../../components/Header";
@@ -41,11 +41,56 @@ export default function Plantao({navigation}){
                     await AsyncStorage.setItem('Empresa', empresa)
                     await AsyncStorage.setItem('Funcionario', funcionario )
                     await AsyncStorage.setItem('Cargo', cargo )
-                    alert('Plantão Trocado com Sucesso!')
-                    navigation.navigate('Home')
-                }else{alert('As senhas não Corespondem')}
-             }else{alert('Senha adm Incorreta')}
-         }else{alert('Insira a Senha Adm')}
+
+                    // 
+                    Alert.alert(
+                        'TheKontroll',
+                        'Plantão Trocado com Sucesso!', [
+                        {
+                          text: 'OK',
+                          onPress: () => navigation.navigate('Home')
+                        },
+                      ],
+                        )
+                    // 
+                   
+                }else{
+                    // 
+                    Alert.alert(
+                        'TheKontroll',
+                        'As senhas não Corespondem!', [
+                        {
+                          text: 'OK',
+                        },
+                      ],
+                        )
+                    // 
+                }
+
+             }else{
+                 // 
+                 Alert.alert(
+                    'TheKontroll',
+                    'Senha Adm Incorreta :(', [
+                    {
+                      text: 'OK',
+                    },
+                  ],
+                    )
+                // 
+                }
+         }else{
+             // 
+             Alert.alert(
+                'TheKontroll',
+                'Insira a Senha Adm', [
+                {
+                  text: 'OK',
+                },
+              ],
+                )
+            // 
+            }
          
     }
 

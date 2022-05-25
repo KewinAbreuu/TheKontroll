@@ -1,5 +1,5 @@
 import react, {useEffect} from "react";
-import {View,Text,  StyleSheet, Image, TouchableOpacity}from 'react-native'
+import {View,Text,  StyleSheet, Image, TouchableOpacity, Alert}from 'react-native'
 
 import Logo from '../../assets/Logo.png'
 
@@ -14,8 +14,15 @@ export default function Splash({navigation}){
 
     function SetSplash(){
         setTimeout(()=>{
-            alert('Configure Seu App :)')
-            navigation.navigate('EmpresaConfig')
+          Alert.alert(
+            'TheKontroll',
+            'Configure Seu Aplicativo!', [
+            {
+              text: 'OK',
+              onPress: () => navigation.navigate('EmpresaConfig')
+            },
+          ],
+            )
         },2000);
     }
 
