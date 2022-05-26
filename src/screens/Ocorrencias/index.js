@@ -9,6 +9,9 @@ import {KeyboardAvoidingView} from 'react-native';
 
 import firebase from '../../firebaseConnection';
 
+import { RadioButton} from 'react-native-paper';
+
+import * as Animatable from 'react-native-animatable';
 
 
 export default function Ocorrencia({navigation}){
@@ -23,6 +26,8 @@ export default function Ocorrencia({navigation}){
     const [date, setDate]= useState(null);
     const [hora, setHora]= useState(null);
     const [bloco, setBloco]= useState(null);
+
+    const [value, setValue] = useState('Baixa');
 
     useEffect(()=>{
         getData()
@@ -74,7 +79,7 @@ export default function Ocorrencia({navigation}){
         Hora: hora,
         Descricao: desc,
         Titulo: titulo,
-        Tipo: ocorrencia,
+        Tipo: value,
         Bloco: bloco,
         Data: firebase.firestore.FieldValue.serverTimestamp()
         })
@@ -110,7 +115,7 @@ export default function Ocorrencia({navigation}){
     <Text style={{color:"#000", fontSize:20,fontWeight:"bold", marginBottom:30, alignSelf:"center"}}>Livro de Ocorrências</Text>
 
             
-            <View style={{flexDirection:"row", width:"90%"}}>
+            <View style={{flexDirection:"row", width:"90%", marginBottom:10}}>
                 <View style={{flexDirection:"column", width:"50%", marginRight:5}}>
                     <Text style={styles.texto}>Data:</Text>
                     <TextInput placeholder={date} style={styles.inputX} onChangeText={setCargo}   editable={false} selectTextOnFocus={false}></TextInput>
@@ -122,18 +127,41 @@ export default function Ocorrencia({navigation}){
                 
             </View>
 
-            <Text style={styles.texto}>Tipo de ocorrência:</Text>
-            <TextInput style={styles.inputY} onChangeText={setOcorrencia} placeholder="Ex: leve, média, grave..." value={ocorrencia}></TextInput>
+            <Text style={styles.texto}>Prioridade:</Text>
+            <RadioButton.Group onValueChange={newValue => setValue(newValue)} value={value}>
+                <View style={{flexDirection:"row", marginBottom:30}}>
+                    <Animatable.View animation="fadeInRightBig"   duration={800} useNativeDriver={true} delay={0} style={styles.btnRadio}>
+                        <RadioButton value="Baixa"  color="#4169E1"  uncheckedColor="#cdcdcd"/>
+                        <Text>Baixa</Text>
+                    </Animatable.View>
+                    <Animatable.View animation="fadeInRightBig"   duration={800} useNativeDriver={true} delay={100} style={styles.btnRadio}>
+                        <RadioButton value="Média"  color="#4169E1"  uncheckedColor="#cdcdcd"/>
+                        <Text>Média</Text>
+                    </Animatable.View>
+                    <Animatable.View animation="fadeInRightBig"   duration={800} useNativeDriver={true} delay={200} style={styles.btnRadio}>
+                        <RadioButton value="Alta"  color="#4169E1"  uncheckedColor="#cdcdcd"/>
+                        <Text>Alta</Text>
+                    </Animatable.View>
+                    <Animatable.View animation="fadeInRightBig"   duration={800} useNativeDriver={true} delay={300} style={styles.btnRadio}>
+                        <RadioButton value="Urgente"  color="#4169E1"  uncheckedColor="#cdcdcd"/>
+                        <Text>Urgente</Text>
+                    </Animatable.View>
+                </View>
+            </RadioButton.Group>
 
-            <Text style={styles.texto}>Titulo:</Text>
-            <TextInput style={styles.input} onChangeText={setTitulo}  value={titulo}></TextInput>
-            
-            <Text style={styles.texto}>Descrição:</Text>
-            <TextInput style={styles.inputArea}  multiline={true} onChangeText={setDesc} value={desc}></TextInput>
+            <Animatable.View animation="fadeIn"   duration={2500} useNativeDriver={true} delay={300}>
+                <TextInput style={styles.inputY} onChangeText={setOcorrencia} placeholder={value} editable={false} selectTextOnFocus={false}></TextInput>
 
-            <TouchableOpacity style={styles.BtnTroca} onPress={HandlleOcorrencia} >
+                <Text style={styles.texto}>Titulo:</Text>
+                <TextInput style={styles.input} onChangeText={setTitulo}  value={titulo}></TextInput>
+                
+                <Text style={styles.texto}>Descrição:</Text>
+                <TextInput style={styles.inputArea}  multiline={true} onChangeText={setDesc} value={desc}></TextInput>
+
+                <TouchableOpacity style={styles.BtnTroca} onPress={HandlleOcorrencia} >
                     <Text style={{color:"#fff"}}>Salvar</Text>
                 </TouchableOpacity>
+            </Animatable.View>
     </KeyboardAvoidingView>
                
         </SafeAreaView>
@@ -216,6 +244,9 @@ const styles = StyleSheet.create({
         marginBottom:5,
         alignSelf:"center"
     },
+    btnRadio:{
+        marginRight:30
+    }
  
   });
   

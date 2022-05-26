@@ -38,7 +38,14 @@ export default function Scan({navigation}) {
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
     setQr(data);
-    alert("Selecionado")
+    Alert.alert(
+      'TheKontroll',
+      'Selecionado!', [
+      {
+        text: 'OK',
+      },
+    ],
+      )
   };
 
   if (hasPermission === null) {

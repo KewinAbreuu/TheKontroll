@@ -6,7 +6,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 /* CODES COMPANYS
-  123= loginsGeral
+  123= TheKontrol
   352847= Life
 */ 
 // company firebase config object

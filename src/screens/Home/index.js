@@ -29,6 +29,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import firebase from '../../firebaseConnection'
 
+import * as Animatable from 'react-native-animatable';
+
+
 export default function Home({navigation}){
 
     const [funcionario, setFuncionario]= useState(null);
@@ -106,18 +109,23 @@ export default function Home({navigation}){
         <SafeAreaView style={styles.container} > 
         <ScrollView style={styles.containerScroll}>
 
-            <Text style={{marginLeft:20, fontSize:26}}>Olá,</Text>
-            <Text style={{marginLeft:20, fontSize:26, fontWeight:"bold"}}>{funcionario}</Text>
+            <Animatable.Text animation="fadeIn" duration={4000} delay={1000}  useNativeDriver={true}
+             style={{marginLeft:20, fontSize:26}}>Olá,</Animatable.Text>
+            <Animatable.Text animation="fadeIn" duration={4000} delay={2000} useNativeDriver={true}
+             style={{marginLeft:20, fontSize:26, fontWeight:"bold"}}>{funcionario}</Animatable.Text>
             <Text style={{marginLeft:20, fontSize:16, color:"#4169E1"}}>TheKontroll</Text>
 
             <SafeAreaView style={styles.banner}>
                 <Image source={Draw} style={{width:270, height:170}}/>
             </SafeAreaView>
-        
-            <TouchableOpacity style={styles.search} onPress={SuporteWhats}>
-                <Text style={{fontWeight:"bold", color:"#fff"}}> Precisa de Ajuda? </Text>
-                <Image source={Suport} style={{width:30,height:30}}/>
-            </TouchableOpacity>
+
+            <Animatable.View animation="pulse" easing="ease-out" iterationCount="infinite" duration={2500}  useNativeDriver={true}>
+              <TouchableOpacity style={styles.search} onPress={SuporteWhats}>
+              <Text style={{fontWeight:"bold", color:"#fff"}}> Precisa de Ajuda? </Text>
+              <Image source={Suport} style={{width:30,height:30}}/>
+             </TouchableOpacity>
+            </Animatable.View>
+           
 
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={{width:"95%",marginLeft:7, marginBottom:20 }}>
                 <Card name={"Ronda   "} icon={Ronda} press={PageScan}/>
@@ -127,7 +135,7 @@ export default function Home({navigation}){
                 <Card name={"Correspondência"} icon={Mail} press={Avaliacao}/>
                 <Card name={"Solicitar apoio"} icon={ApoioImg} press={Apoio}/>
                 <Card name={"Fale sindico"} icon={Star} press={FaleSindico}/>
-                <Card name={"REMOVER EMPRESA"}  press={REMOVEASYNC}/>
+                {/* <Card name={"REMOVER EMPRESA"}  press={REMOVEASYNC}/> */}
 
                 {/* <Card name={"Configurações"} icon={Config} press={Perfil}/> */}
             </ScrollView>
