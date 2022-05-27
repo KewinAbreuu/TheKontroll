@@ -88,7 +88,8 @@ export default function Reservas({navigation}){
       },[])
 
       function handdleBd(){
-        firebase.firestore().collection('reservas')
+          if(value !== null){
+            firebase.firestore().collection('reservas')
         .add({
           Data: firebase.firestore.FieldValue.serverTimestamp(),
           Ambiente: value,
@@ -116,6 +117,16 @@ export default function Reservas({navigation}){
           ],
             )
         })
+          }else{
+            Alert.alert(
+                'TheKontroll',
+                'Escolha um Ambiente', [
+                {
+                  text: 'OK',
+                },
+              ],
+                )
+          }
     
       }
 
@@ -129,8 +140,6 @@ export default function Reservas({navigation}){
 
             <Text style={{color:"#000", fontSize:20,fontWeight:"bold", marginBottom:20, alignSelf:"center"}}>Reservas</Text>
                    
-                   <Text>{posts.id}</Text>
-                    
                 <View style={styles.containerSelect}>
                     <Text style={styles.paragraph}>
                         Ambientes
