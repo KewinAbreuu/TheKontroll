@@ -1,5 +1,5 @@
 import react, {useState, useEffect} from "react";
-import {StyleSheet,SafeAreaView, StatusBar, ScrollView, Text, TextInput, Button, Platform, View, TouchableOpacity, Image, FlatList }from 'react-native'
+import {StyleSheet,SafeAreaView, StatusBar, ScrollView, Text, TextInput, Button, Platform, View, TouchableOpacity, Image, FlatList, Alert }from 'react-native'
 
 
 import Header from "../../components/Header";
@@ -87,6 +87,37 @@ export default function Reservas({navigation}){
     
       },[])
 
+      function handdleBd(){
+        firebase.firestore().collection('reservas')
+        .add({
+          Data: firebase.firestore.FieldValue.serverTimestamp(),
+          Ambiente: value,
+        })
+        .then(()=>{
+          Alert.alert(
+            'TheKontroll',
+            'Reserva Realizada com Sucesso!', [
+            {
+              text: 'OK',
+              onPress: () => navigation.navigate('Home')
+            },
+          ],
+            )
+
+        })
+        .catch(()=>{
+          Alert.alert(
+            'TheKontroll',
+            'Error, Tente Novamente!', [
+            {
+              text: 'OK',
+              onPress: () => navigation.navigate('Home')
+            },
+          ],
+            )
+        })
+    
+      }
 
     return(
     <>
@@ -168,7 +199,7 @@ export default function Reservas({navigation}){
                     <TextInput placeholder="Apt" style={styles.inputForm}  ></TextInput>
                 </Animatable.View>
                 
-                <TouchableOpacity style={styles.BtnTroca} >
+                <TouchableOpacity style={styles.BtnTroca}  onPress={handdleBd} >
                     <Text style={{color:"#fff"}}>Reservar</Text>
                 </TouchableOpacity>
                 

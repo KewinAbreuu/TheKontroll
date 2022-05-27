@@ -125,7 +125,6 @@ async function getData(){
         )
     })
 
-    // navigation.navigate('Home')
   }
 
   return (
