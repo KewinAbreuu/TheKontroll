@@ -184,26 +184,26 @@ export default function Reservas({navigation}){
                 </Animatable.View>
 
                 <Animatable.View animation="fadeInRightBig"   duration={1400} useNativeDriver={true}
-                 style={{width:"100%", flexDirection:"column", justifyContent:"center", alignItems:"center", marginTop:20}}>
+                 style={styles.viewInput}>
                     <Text style={styles.texto}>Nome:</Text>
                     <TextInput placeholder="Nome" style={styles.inputForm}  ></TextInput>
                 </Animatable.View>
 
                 <Animatable.View animation="fadeInRightBig"   duration={1600} useNativeDriver={true}
-                 style={{width:"100%", flexDirection:"column", justifyContent:"center", alignItems:"center", marginTop:20}}>
+                 style={styles.viewInput}>
                     <Text style={styles.texto}>CPF:</Text>
                     <TextInput placeholder="CPF" keyboardType="numeric" style={styles.inputForm}  ></TextInput>
                 </Animatable.View>
 
                 <Animatable.View animation="fadeInRightBig"   duration={1800} useNativeDriver={true}
-                 style={{width:"100%", flexDirection:"column", justifyContent:"center", alignItems:"center", marginTop:20}}>
+                 style={styles.viewInput}>
                     <Text style={styles.texto}>Bloco:</Text>
                     <TextInput placeholder="Bloco" style={styles.inputForm}  ></TextInput>
                 </Animatable.View>
 
 
                 <Animatable.View animation="fadeInRightBig"   duration={2000} useNativeDriver={true}
-                 style={{width:"100%", flexDirection:"column", justifyContent:"center", alignItems:"center", marginTop:20}}>
+                 style={styles.viewInput}>
                     <Text style={styles.texto}>Apt:</Text>
                     <TextInput placeholder="Apt" style={styles.inputForm}  ></TextInput>
                 </Animatable.View>
@@ -288,6 +288,9 @@ const styles = StyleSheet.create({
         marginBottom:50,
         alignSelf:"center"
     },
+    viewInput:{
+        width:"100%", flexDirection:"column", justifyContent:"center", alignItems:"center", marginTop:20
+    }
 
   });
   
