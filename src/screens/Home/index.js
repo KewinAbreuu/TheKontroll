@@ -36,6 +36,7 @@ export default function Home({navigation}){
 
     const [funcionario, setFuncionario]= useState(null);
     const [funcionarioName, setFuncionarioName]= useState(false);
+    const [nameCondomino, setNameCondominio] =useState()
 
     useEffect(()=>{
         getData()
@@ -48,6 +49,12 @@ export default function Home({navigation}){
             setFuncionarioName(!funcionarioName)
          }else{alert('nao tem nd no local')}
       }
+
+    async function FnameCondominio(){
+       const nome= await AsyncStorage.getItem('Empresa')
+       setNameCondominio(nome)
+    }
+    FnameCondominio()
 
 
     function PageScan(){
@@ -113,7 +120,7 @@ export default function Home({navigation}){
              style={{marginLeft:20, fontSize:26}}>Olá,</Animatable.Text>
             <Animatable.Text animation="fadeIn" duration={4000} delay={2000} useNativeDriver={true}
              style={{marginLeft:20, fontSize:26, fontWeight:"bold"}}>{funcionario}</Animatable.Text>
-            <Text style={{marginLeft:20, fontSize:16, color:"#4169E1"}}>TheKontroll</Text>
+            <Text style={{marginLeft:20, fontSize:16, color:"#4169E1"}}>{nameCondomino}</Text>
 
             <SafeAreaView style={styles.banner}>
                 <Image source={Draw} style={{width:270, height:170}}/>

@@ -16,8 +16,8 @@ import DropDownPicker from 'react-native-dropdown-picker'
 import Constants from 'expo-constants';
 
 import * as Animatable from 'react-native-animatable';
-// MyCustomComponent = Animatable.createAnimatableComponent(MyCustomComponent);
 
+import firebase from '../../firebaseConnection'
 
 export default function Reservas({navigation}){
 
@@ -50,12 +50,43 @@ export default function Reservas({navigation}){
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState(null);
     const [items, setItems] = useState([
-        {label: 'Piscina', value: 'Piscina', key:123},
-        {label: 'Salão de festas', value: 'Salão de festas', key:1234},
-        {label: 'Parque', value: 'Parque', key:1235},
-        {label: 'Academia', value: 'Academia', key:1236},
+        // {label: 'Piscina', value: 'Piscina', key:123},
+        // {label: 'Salão de festas', value: 'Salão de festas', key:1234},
+        // {label: 'Parque', value: 'Parque', key:1235},
+        // {label: 'Academia', value: 'Academia', key:1236},
       
     ]);
+
+    const [posts, setPosts]=useState([])
+
+    useEffect(()=>{
+         async function loadPost(){
+    
+           await firebase.firestore().collection('ambientes')
+          .orderBy('Data','desc')
+          .onSnapshot((doc)=>{
+            let meusPosts=[];
+    
+            doc.forEach((item)=>{
+              meusPosts.push({
+                id:item.id,
+                label:item.data().label,
+                value:item.data().Value,
+                Data:item.data().Data,
+              })
+            });
+            
+    
+            setPosts(meusPosts)
+    
+          })
+    
+        }
+        
+        loadPost();
+    
+      },[])
+
 
     return(
     <>
@@ -66,34 +97,31 @@ export default function Reservas({navigation}){
             <ScrollView style={styles.containerScroll}>
 
             <Text style={{color:"#000", fontSize:20,fontWeight:"bold", marginBottom:20, alignSelf:"center"}}>Reservas</Text>
-
+                   
+                   <Text>{posts.id}</Text>
                     
                 <View style={styles.containerSelect}>
                     <Text style={styles.paragraph}>
-                        Ambiente
+                        Ambientes
+                        {posts.date}
                     </Text>
+
                     <DropDownPicker
                     open={open}
                     value={value}
-                    items={items}
+                    items={posts}
                     setOpen={setOpen}
                     setValue={setValue}
                     setItems={setItems}
                     placeholder="Selecione um Ambiente"
-                    itemKey="key"
-                    // itemSeparator={true}
-                    // itemSeparatorStyle={{
-                    //     backgroundColor: "#9938ed",
-                    //     height:0.10
-                    //   }}
+                    itemKey={posts.id}
                     searchable={true}
                     searchPlaceholder="Digite o nome de um ambiente"
-
                     listMode="MODAL"
                     />
                     
                 </View>
-{/* slideInLeft */}
+
                 <Animatable.View animation="fadeInRightBig"   duration={1000} useNativeDriver={true}
                  style={{width:"100%", flexDirection:"row", justifyContent:"center", alignItems:"center", marginTop:20}}>
                     <TextInput placeholder={text} style={styles.input} editable={false} selectTextOnFocus={false} ></TextInput>
@@ -140,7 +168,7 @@ export default function Reservas({navigation}){
                     <TextInput placeholder="Apt" style={styles.inputForm}  ></TextInput>
                 </Animatable.View>
                 
-                <TouchableOpacity style={styles.BtnTroca}>
+                <TouchableOpacity style={styles.BtnTroca} >
                     <Text style={{color:"#fff"}}>Reservar</Text>
                 </TouchableOpacity>
                 
