@@ -1,6 +1,4 @@
 
-
-
 import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, Button, TextInput, Alert } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
@@ -8,6 +6,9 @@ import { BarCodeScanner } from 'expo-barcode-scanner';
 import firebase from '../../firebaseConnection';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import { RadioButton} from 'react-native-paper';
+import Position from 'react-native/Libraries/Components/Touchable/Position';
 
 
 
@@ -21,6 +22,9 @@ export default function Scan({navigation}) {
   const [empresa, setEmpresa]= useState(null);
   const [funcionario, setFuncionario]= useState(null);
   const [cargo, setCargo]= useState(null);
+  // Value do radio button
+  const [value, setValue] = useState('Baixa');
+
 
 
 
@@ -98,7 +102,8 @@ async function getData(){
       Data: firebase.firestore.FieldValue.serverTimestamp(),
       Descricao: desc,
       Funcionario:funcionario,
-      Cargo:cargo
+      Cargo:cargo,
+      Condicoes:value
     })
     .then(()=>{
       Alert.alert(
@@ -106,7 +111,7 @@ async function getData(){
         'Ronda Realizada com Sucesso!', [
         {
           text: 'OK',
-          onPress: () => navigation.navigate('Home')
+          onPress: () => navigation.navigate('Ronda')
         },
       ],
         )
@@ -142,12 +147,40 @@ async function getData(){
         </TouchableOpacity>
     </View>
 
+    <View style={{backgroundColor:"#fff", position:"absolute", bottom:0, width:"100%"}}>
+    <RadioButton.Group onValueChange={newValue => setValue(newValue)} value={value}>
+                <Text style={{marginLeft:15}}>Condições:</Text>
+                  <View style={{flexDirection:"row", justifyContent:"space-around", marginBottom:5}}>
+                      <View tyle={styles.btnRadio}>
+                          <RadioButton value="Ótimo"  color="#4169E1"  uncheckedColor="#cdcdcd"/>
+                          <Text>Ótimo</Text>
+                      </View>
+                      <View  style={styles.btnRadio}>
+                          <RadioButton value="Bom"  color="#4169E1"  uncheckedColor="#cdcdcd"/>
+                          <Text>  Bom</Text>
+                      </View>
+                      <View  style={styles.btnRadio}>
+                          <RadioButton value="Regular"  color="#4169E1"  uncheckedColor="#cdcdcd"/>
+                          <Text>Regular</Text>
+                      </View>
+                      <View  style={styles.btnRadio}>
+                          <RadioButton value="Ruim"  color="#4169E1"  uncheckedColor="#cdcdcd"/>
+                          <Text> Ruim</Text>
+                       </View>
+                       <View  style={styles.btnRadio}>
+                          <RadioButton value="Péssima"  color="#4169E1"  uncheckedColor="#cdcdcd"/>
+                          <Text>Péssima</Text>
+                       </View>
+                  </View>
+              </RadioButton.Group>
+      </View>
+
     </View>
 
    
 
     <View>
-            <TextInput style={{color:"#000", padding:20}} placeholder="Descrição" onChangeText={setDesc} value={desc}/>
+            <TextInput style={{color:"#000", padding:20}} placeholder="Observações" onChangeText={setDesc} value={desc}/>
     </View>
 
     <View>
@@ -164,7 +197,6 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
-    // height:"100%",
   },
   btn:{
       width:"100%",
@@ -184,6 +216,10 @@ const styles = StyleSheet.create({
 textoButtons:{
     color:"#fff",
     fontWeight:"700"
-}
+},
+  btnRadio:{
+        // marginLeft:20,
+        // justifyContent:"center"
+    }
 
 });

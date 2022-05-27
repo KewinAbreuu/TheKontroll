@@ -34,7 +34,7 @@ export default function Ronda({navigation}){
 
             <BtnFlutter press={OpenScan} icon={Cruz}/>
 
-            <Animatable.View animation="slideInDown" iterationCount="infinite" direction="alternate" duration={1500}  useNativeDriver={true}
+            <Animatable.View animation="pulse" easing="ease-out" iterationCount="infinite" duration={2500}  useNativeDriver={true}
              style={styles.fotoRonda}>
                 <Image source={Ronda2} style={styles.imageRonda2}/>
             </Animatable.View>
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
         width:"95%",
         justifyContent:"center",
         alignItems:"center",
-        marginTop:45
+        marginTop:20
     },
     imageRonda2:{
         width: 450,
