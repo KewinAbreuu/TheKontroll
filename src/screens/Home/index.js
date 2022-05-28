@@ -104,11 +104,26 @@ export default function Home({navigation}){
     function Reservas(){
         navigation.navigate('Reservas')
     }
-
+    // 
     function REMOVEASYNC(){
         AsyncStorage.removeItem('Empresa')
     }
 
+    function Ligar(){
+        firebase.database().ref('/').update({
+            L1:'0'
+          });
+    }
+
+    function desligar(){
+        firebase.database().ref('/').update({
+            L1:'1'
+          });
+    }
+
+    // 
+
+    // console.log(Ligar)
 
     return(
     <>
@@ -136,6 +151,8 @@ export default function Home({navigation}){
            
 
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={{width:"95%",marginLeft:7, marginBottom:20 }}>
+                <Card name={"ON"}  press={Ligar}/>
+                <Card name={"OFF"}  press={desligar}/>
                 <Card name={"Ronda   "} icon={Ronda} press={PageScan}/>
                 <Card name={"Livro de ocorrências"} icon={OcorrenciaImg} press={Ocorrencias}/>
                 <Card name={"Dispositivos"} icon={Devices} press={Avaliacao}/>

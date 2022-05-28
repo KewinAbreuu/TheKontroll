@@ -2,6 +2,7 @@
 import firebase from  'firebase/app';
 import 'firebase/auth'
 import 'firebase/firestore'
+import 'firebase/database'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
@@ -15,6 +16,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
     TheKontrol: {
       apiKey: "AIzaSyB8WpaHjzv2WLdM812retS2F5Dk0hSYgCM",
       authDomain: "appportaria-b0a1b.firebaseapp.com",
+      databaseURL: "https://appportaria-b0a1b-default-rtdb.firebaseio.com",
       projectId: "appportaria-b0a1b",
       storageBucket: "appportaria-b0a1b.appspot.com",
       messagingSenderId: "43910768183",
