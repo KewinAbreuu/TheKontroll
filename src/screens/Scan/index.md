@@ -16,7 +16,7 @@ export default function Scan({navigation}) {
 
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
-  const [qr,setQr] = useState("")
+  const [qr,setQr] = useState("Aponte a camera para o QR Code")
   const [desc,setDesc] =useState('');
   // States Da config do usuario
   const [empresa, setEmpresa]= useState(null);
@@ -25,9 +25,8 @@ export default function Scan({navigation}) {
   // Value do radio button
   const [value, setValue] = useState('Baixa');
 
-  let dados = qr.split("-")
 
-  console.log(dados)
+
 
   useEffect(() => {
     (async () => {

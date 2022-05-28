@@ -86,7 +86,7 @@ export default function Home({navigation}){
     }
 
     function Plantao(){
-        navigation.navigate('Plantao')
+        navigation.navigate('ScanPlantao')
     }
 
     function Panico(){
@@ -108,6 +108,7 @@ export default function Home({navigation}){
     function REMOVEASYNC(){
         AsyncStorage.removeItem('Empresa')
     }
+
 
     return(
     <>
@@ -142,7 +143,7 @@ export default function Home({navigation}){
                 <Card name={"Correspondência"} icon={Mail} press={Avaliacao}/>
                 <Card name={"Solicitar apoio"} icon={ApoioImg} press={Apoio}/>
                 <Card name={"Fale sindico"} icon={Star} press={FaleSindico}/>
-                {/* <Card name={"REMOVER EMPRESA"}  press={REMOVEASYNC}/> */}
+                <Card name={"REMOVER EMPRESA"}  press={REMOVEASYNC}/>
 
                 {/* <Card name={"Configurações"} icon={Config} press={Perfil}/> */}
             </ScrollView>

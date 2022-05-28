@@ -11,10 +11,10 @@ import Ronda from '../../src/screens/Ronda'
 import Adm from '../../src/screens/Adm'
 import UserPerfil from '../../src/screens/UserPerfil'
 import EmpresaConfig from '../../src/screens/Config'
-import Plantao from '../../src/screens/Plantao'
 import Ocorrencia from '../../src/screens/Ocorrencias'
 import Apoio from '../../src/screens/Apoio'
 import Reservas from '../../src/screens/Reservas'
+import ScanPlantao from '../../src/screens/ScanPlantao'
 
 export const Routes = ()=>{
     const Stack = createNativeStackNavigator();
@@ -29,10 +29,10 @@ export const Routes = ()=>{
                 <Stack.Screen name='Adm' component={Adm}/>
                 <Stack.Screen name='UserPerfil' component={UserPerfil}/>
                 <Stack.Screen name='EmpresaConfig' component={EmpresaConfig}/>
-                <Stack.Screen name='Plantao' component={Plantao}/>
                 <Stack.Screen name='Ocorrencia' component={Ocorrencia}/>
                 <Stack.Screen name='Apoio' component={Apoio}/>
                 <Stack.Screen name='Reservas' component={Reservas}/>
+                <Stack.Screen name='ScanPlantao' component={ScanPlantao}/>
             </Stack.Navigator>
         </NavigationContainer>
     )

@@ -11,7 +11,16 @@
 <p>-Trocar plantões</p>
 
 ## 🚀  Como usar! </hr>
+Modelo QrCode Config Inicial:
+```
+  Empresa-Funcionario-Cargo
+```
 
+Modelo QrCode Trcar Plantão :
+```
+  Funcionario-Cargo
+```
+ 
 - [x] Baixe o código aq do Repositório TheKontroll
 
 Execute o comando:
