@@ -7,7 +7,7 @@
     "assetBundlePatterns": [
       "**/*"
     ],
-    "userInterfaceStyle": "dark",
+    "userInterfaceStyle": "light",
     "orientation": "portrait",
     "android": {
       "package": "com.kewinabreu.kontroll",
