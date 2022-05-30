@@ -104,26 +104,16 @@ export default function Home({navigation}){
     function Reservas(){
         navigation.navigate('Reservas')
     }
+
+    function Dispositivos(){
+        navigation.navigate('Dispositivos')
+    }
     // 
     function REMOVEASYNC(){
         AsyncStorage.removeItem('Empresa')
     }
 
-    function Ligar(){
-        firebase.database().ref('/').update({
-            L1:'0'
-          });
-    }
 
-    function desligar(){
-        firebase.database().ref('/').update({
-            L1:'1'
-          });
-    }
-
-    // 
-
-    // console.log(Ligar)
 
     return(
     <>
@@ -151,18 +141,15 @@ export default function Home({navigation}){
            
 
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={{width:"95%",marginLeft:7, marginBottom:20 }}>
-                <Card name={"ON"}  press={Ligar}/>
-                <Card name={"OFF"}  press={desligar}/>
                 <Card name={"Ronda   "} icon={Ronda} press={PageScan}/>
                 <Card name={"Livro de ocorrências"} icon={OcorrenciaImg} press={Ocorrencias}/>
-                <Card name={"Dispositivos"} icon={Devices} press={Avaliacao}/>
+                <Card name={"Dispositivos"} icon={Devices} press={Dispositivos}/>
                 <Card name={"Reservas"} icon={Calendar} press={Reservas}/>
                 <Card name={"Correspondência"} icon={Mail} press={Avaliacao}/>
                 <Card name={"Solicitar apoio"} icon={ApoioImg} press={Apoio}/>
                 <Card name={"Fale sindico"} icon={Star} press={FaleSindico}/>
-                <Card name={"REMOVER EMPRESA"}  press={REMOVEASYNC}/>
+                {/* <Card name={"REMOVER EMPRESA"}  press={REMOVEASYNC}/> */}
 
-                {/* <Card name={"Configurações"} icon={Config} press={Perfil}/> */}
             </ScrollView>
 
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={{width:"95%",marginLeft:7, marginBottom:20 }}>

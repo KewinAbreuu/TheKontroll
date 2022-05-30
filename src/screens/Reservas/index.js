@@ -29,6 +29,11 @@ export default function Reservas({navigation}){
     const [text, setText] = useState('DD/MM/YYY')
     const [text2, setText2] = useState('Hora')
 
+    const [nome, setNome] = useState('')
+    const [cpf, setCpf] = useState('')
+    const [bloco, setBloco] = useState('')
+    const [apt, setApt] = useState('')
+
     const onChange = (event, selectedDate) =>{
         const currentDate = selectedDate || date;
         setShow(Platform.OS === 'ios')
@@ -93,6 +98,12 @@ export default function Reservas({navigation}){
         .add({
           Data: firebase.firestore.FieldValue.serverTimestamp(),
           Ambiente: value,
+          Date: text,
+          Hora: text2,
+          Nome: nome,
+          CPF: cpf,
+          Bloco: bloco,
+          Apt: apt
         })
         .then(()=>{
           Alert.alert(
@@ -143,7 +154,6 @@ export default function Reservas({navigation}){
                 <View style={styles.containerSelect}>
                     <Text style={styles.paragraph}>
                         Ambientes
-                        {posts.date}
                     </Text>
 
                     <DropDownPicker
@@ -186,26 +196,26 @@ export default function Reservas({navigation}){
                 <Animatable.View animation="fadeInRightBig"   duration={1400} useNativeDriver={true}
                  style={styles.viewInput}>
                     <Text style={styles.texto}>Nome:</Text>
-                    <TextInput placeholder="Nome" style={styles.inputForm}  ></TextInput>
+                    <TextInput placeholder="Nome" style={styles.inputForm} onChangeText={setNome} value={nome} ></TextInput>
                 </Animatable.View>
 
                 <Animatable.View animation="fadeInRightBig"   duration={1600} useNativeDriver={true}
                  style={styles.viewInput}>
                     <Text style={styles.texto}>CPF:</Text>
-                    <TextInput placeholder="CPF" keyboardType="numeric" style={styles.inputForm}  ></TextInput>
+                    <TextInput placeholder="CPF" keyboardType="numeric" style={styles.inputForm} onChangeText={setCpf} value={cpf} ></TextInput>
                 </Animatable.View>
 
                 <Animatable.View animation="fadeInRightBig"   duration={1800} useNativeDriver={true}
                  style={styles.viewInput}>
                     <Text style={styles.texto}>Bloco:</Text>
-                    <TextInput placeholder="Bloco" style={styles.inputForm}  ></TextInput>
+                    <TextInput placeholder="Bloco" style={styles.inputForm} onChangeText={setBloco} value={bloco}  ></TextInput>
                 </Animatable.View>
 
 
                 <Animatable.View animation="fadeInRightBig"   duration={2000} useNativeDriver={true}
                  style={styles.viewInput}>
                     <Text style={styles.texto}>Apt:</Text>
-                    <TextInput placeholder="Apt" style={styles.inputForm}  ></TextInput>
+                    <TextInput placeholder="Apt" style={styles.inputForm} onChangeText={setApt} value={apt} ></TextInput>
                 </Animatable.View>
                 
                 <TouchableOpacity style={styles.BtnTroca}  onPress={handdleBd} >

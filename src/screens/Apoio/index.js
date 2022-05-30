@@ -60,8 +60,8 @@ export default function Apoio({navigation}){
                 <Text style={{alignSelf:"center", fontSize:26}}>Solicitar Apoio</Text>
                 <Text style={{fontSize:16, color:"#4169E1", alignSelf:"center"}}>The Kontroll</Text>
 
-                <CardApoio name="Supervisor" icon={Sindico}  press={HandlleSindico}/>
-                <CardApoio name="Seguranças" icon={Ronda}  press={HandlleSindico}/>
+                {/* <CardApoio name="Supervisor" icon={Sindico}  press={HandlleSindico}/>
+                <CardApoio name="Seguranças" icon={Ronda}  press={HandlleSindico}/> */}
                 <CardApoio name="Bombeiro" icon={Bombeiro} press={HandlleBombeiro} />
                 <CardApoio name="Samu" icon={Samu} press={HandlleSamu} />
                 <CardApoio name="Policia" icon={Police} press={HandllePolice} />

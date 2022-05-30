@@ -8,7 +8,7 @@ import firebase from '../../firebaseConnection';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { RadioButton} from 'react-native-paper';
-import Position from 'react-native/Libraries/Components/Touchable/Position';
+// import Position from 'react-native/Libraries/Components/Touchable/Position';
 
 
 
@@ -16,14 +16,14 @@ export default function Scan({navigation}) {
 
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
-  const [qr,setQr] = useState("")
+  const [qr,setQr] = useState("Aponte a camera para o Qr Code")
   const [desc,setDesc] =useState('');
   // States Da config do usuario
   const [empresa, setEmpresa]= useState(null);
   const [funcionario, setFuncionario]= useState(null);
   const [cargo, setCargo]= useState(null);
   // Value do radio button
-  const [value, setValue] = useState('Baixa');
+  const [value, setValue] = useState('');
 
   let dados = qr.split("-")
 
