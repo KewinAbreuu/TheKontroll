@@ -11,14 +11,12 @@ export default function CardApoio({id,name,contato,press}){
     function Msg(){
         firebase.firestore().collection('moradores')
         .doc(id)
-        //  alert(contato)
         Linking.openURL(`https://api.whatsapp.com/send?phone=${contato}&&text=Solicito%20Apoio!`);
     }
 
     function Ligar(){
         firebase.firestore().collection('moradores')
         .doc(id)
-        //  alert(contato)
          Linking.openURL(`tel:${contato}`);
     }
 
