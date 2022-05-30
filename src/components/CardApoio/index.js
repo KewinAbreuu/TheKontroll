@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
       justifyContent: "center",
       borderRadius:20,
       paddingHorizontal:10,
+      marginLeft:10,
       marginRight:10,
       marginBottom:20
     },
@@ -61,7 +62,8 @@ const styles = StyleSheet.create({
         backgroundColor:"#fff",
         justifyContent:"center",
         alignItems:"center",
-        marginRight:10
+        marginRight:10,
+        borderRadius:10
     }
     
   });
