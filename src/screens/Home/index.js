@@ -81,8 +81,8 @@ export default function Home({navigation}){
         Linking.openURL(`https://api.whatsapp.com/send?phone=5582981129518&text=Preciso%20de%20Ajuda!`);
     }
 
-    function Avaliacao(){
-        alert('Reservas')
+    function Correspondencia(){
+        navigation.navigate('Correspondencia')
     }
 
     function Plantao(){
@@ -145,7 +145,7 @@ export default function Home({navigation}){
                 <Card name={"Livro de ocorrências"} icon={OcorrenciaImg} press={Ocorrencias}/>
                 <Card name={"Dispositivos"} icon={Devices} press={Dispositivos}/>
                 <Card name={"Reservas"} icon={Calendar} press={Reservas}/>
-                <Card name={"Correspondência"} icon={Mail} press={Avaliacao}/>
+                <Card name={"Correspondência"} icon={Mail} press={Correspondencia}/>
                 <Card name={"Solicitar apoio"} icon={ApoioImg} press={Apoio}/>
                 <Card name={"Fale sindico"} icon={Star} press={FaleSindico}/>
                 {/* <Card name={"REMOVER EMPRESA"}  press={REMOVEASYNC}/> */}

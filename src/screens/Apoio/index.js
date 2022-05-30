@@ -1,72 +1,71 @@
 import react, {useState, useEffect} from "react";
-import {StyleSheet,SafeAreaView, StatusBar, Linking, ScrollView, Text, Image, TouchableOpacity, TextInput }from 'react-native'
+import {StyleSheet,SafeAreaView, StatusBar, ScrollView, Text, TextInput, Button, Platform, View, TouchableOpacity, Image, FlatList, Alert }from 'react-native'
 
 
 import Header from "../../components/Header";
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import CardApoio from "../../components/CardApoio";
-import Ronda from  '../../assets/ronda.png'
-import Sindico from '../../assets/sindico.png'
-import Bombeiro from '../../assets/bombeiro.png'
-import Police from '../../assets/police.png'
-import Samu from '../../assets/samu.png'
+import * as Animatable from 'react-native-animatable';
 
 import firebase from '../../firebaseConnection'
 
-export default function Apoio({navigation}){
+import Card from '../../components/CardApoio'
 
-    const [funcionario, setFuncionario]= useState(null);
-    const [funcionarioName, setFuncionarioName]= useState(false);
+export default function Correspondencia({navigation}){
+
+
+    const [posts, setPosts]=useState([])
 
     useEffect(()=>{
-        getData()
-    },[funcionarioName])
+          function loadPost(){
+    
+            firebase.firestore().collection('apoio')
+          .orderBy('DataCreat','desc')
+          .onSnapshot((doc)=>{
+            let meusPosts=[];
+    
+            doc.forEach((item)=>{
+              meusPosts.push({
+                id:item.id,
+                Nome: item.data().Nome,
+                Contato: item.data().Contato
+              })
+            });
+            
+    
+            setPosts(meusPosts)
+    
+          })
+    
+        }
+        
+        loadPost();
+    
+      },[])
 
-    const getData = async () => {
-          const funcionario = await AsyncStorage.getItem('Funcionario')
-         if(funcionario !== null || funcionario === funcionario){
-            setFuncionario(funcionario)
-            setFuncionarioName(!funcionarioName)
-         }else{alert('nao tem nd no local')}
-      }
-
-
-
-    function HandlleSindico(){
-        Linking.openURL(`tel:+5582981129518`);
-    }
-
-    function HandlleBombeiro(){
-        Linking.openURL(`tel:193`);
-    }
-
-    function HandllePolice(){
-        Linking.openURL(`tel:190`);
-    }
-
-    function HandlleSamu(){
-        Linking.openURL(`tel:192`);
-    }
+    
 
     return(
     <>
+    
     <StatusBar/>
     <Header/>
         <SafeAreaView style={styles.container} > 
             <ScrollView style={styles.containerScroll}>
 
-                <Text style={{alignSelf:"center", fontSize:26}}>Solicitar Apoio</Text>
-                <Text style={{fontSize:16, color:"#4169E1", alignSelf:"center"}}>The Kontroll</Text>
-
-                {/* <CardApoio name="Supervisor" icon={Sindico}  press={HandlleSindico}/>
-                <CardApoio name="Seguranças" icon={Ronda}  press={HandlleSindico}/> */}
-                <CardApoio name="Bombeiro" icon={Bombeiro} press={HandlleBombeiro} />
-                <CardApoio name="Samu" icon={Samu} press={HandlleSamu} />
-                <CardApoio name="Policia" icon={Police} press={HandllePolice} />
-
-                <Text style={{alignSelf:"center", fontSize:26, marginTop:50}}></Text>
+            <Text style={{color:"#000", fontSize:20,fontWeight:"bold", marginBottom:20, alignSelf:"center"}}>Solicitar Apoio</Text>
+                   
+          {posts.map((post)=>{
+            
+            return(
+                <Card key={post.id}
+                id={post.id}
+                name={post.Nome}
+                contato={post.Contato}
+                />
+            )
+          })}
                 
             </ScrollView>
         </SafeAreaView>
@@ -85,6 +84,56 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         marginTop:0,
         paddingTop:30},
+
+    input:{
+            backgroundColor:"#cdcdcd",
+            width:"80%",
+            padding:10,
+            borderRadius:10, 
+            justifyContent:"center"
+            // alignSelf:"center"
+        },
+    
+    inputForm:{
+        backgroundColor:"#cdcdcd",
+            width:"92%",
+            padding:10,
+            borderRadius:10, 
+            justifyContent:"center"
+    },
+    texto:{
+        alignSelf:"flex-start",
+        marginLeft:20,
+        fontSize:16,
+        color:"#000",
+        marginBottom:5
+    },
+
+    containerSelect: {
+      
+      },
+      paragraph: {
+        marginTop:10,
+        marginBottom:20,
+        fontSize: 18,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        color:"#000"
+      },
+      BtnTroca:{
+        width:300,
+        height:56,
+        backgroundColor:"#4169E1",
+        alignItems:"center",
+        justifyContent:"center",
+        borderRadius:30,
+        marginTop:20,
+        marginBottom:50,
+        alignSelf:"center"
+    },
+    viewInput:{
+        width:"100%", flexDirection:"column", justifyContent:"center", alignItems:"center", marginTop:20
+    }
 
   });
   

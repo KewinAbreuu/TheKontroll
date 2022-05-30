@@ -1,18 +1,44 @@
-import {View,Text,  StyleSheet, Image, TouchableOpacity}from 'react-native'
+
+import {View,Text,  StyleSheet, Image, TouchableOpacity, Linking}from 'react-native'
+
+import firebase from '../../firebaseConnection'
 
 
 
-export default function CardApoio({name, icon, press}){
+
+export default function CardApoio({id,name,contato,press}){
+
+    function Msg(){
+        firebase.firestore().collection('moradores')
+        .doc(id)
+        //  alert(contato)
+        Linking.openURL(`https://api.whatsapp.com/send?phone=${contato}&&text=Solicito%20Apoio!`);
+    }
+
+    function Ligar(){
+        firebase.firestore().collection('moradores')
+        .doc(id)
+        //  alert(contato)
+         Linking.openURL(`tel:${contato}`);
+    }
 
     return(
-        <TouchableOpacity style={styles.container} onPress={press} >
+        <TouchableOpacity style={styles.container} >
             
-            <View style={styles.cont}>
-                <Image source={icon} style={styles.icon}/>
-                <Text style={{fontSize:26, color:"#fff", fontWeight:"bold"}}>{name}</Text>
+            <View style={{flexDirection:"row", alignItems:"center", justifyContent:"space-between", paddingHorizontal:20}} >
+                <Text style={{fontSize:16, color:"#fff", fontWeight:"bold"}}>{name}</Text>
 
+                <View style={{justifyContent:"center", flexDirection:"row"}}>
+                    <TouchableOpacity style={styles.btn1} onPress={Ligar}>
+                        <Text>Ligar</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={styles.btn1} onPress={Msg} >
+                        <Text>Msg</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
-
+            
             
         </TouchableOpacity>
     )
@@ -20,36 +46,24 @@ export default function CardApoio({name, icon, press}){
 
 const styles = StyleSheet.create({
     container: {
-      flexDirection:'row',
-      width:"98%",
-      height:100,
-      backgroundColor:'#BFBFBF',
-      alignItems: 'center',
+      flexDirection:'column',
+      width:'auto',
+      height:76,
+      backgroundColor: '#4169E1',
+    //   alignItems: 'center',
+      justifyContent: "center",
       borderRadius:20,
-      marginTop:10,
-      marginLeft:5,
-      paddingHorizontal:30
+      paddingHorizontal:10,
+      marginRight:10,
+      marginBottom:20
     },
-
-    cont: {
-        flexDirection:'row',
-        width:"90%",
-        alignItems: 'center',
-        // justifyContent: "space-around",
-        marginTop:10,
-        marginRight:10,
-      },
-    icon:{
-        width:45,
+    btn1:{
+        width:50,
         height:50,
-        resizeMode:"contain",
-        marginRight:30
-    },
-    icon2:{
-        width:30,
-        height:35,
-        resizeMode:"contain",
-        marginRight:30,
+        backgroundColor:"#fff",
+        justifyContent:"center",
+        alignItems:"center",
+        marginRight:10
     }
     
   });
