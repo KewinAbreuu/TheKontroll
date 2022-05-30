@@ -93,9 +93,6 @@ export default function Home({navigation}){
         Linking.openURL(`tel:190`);
     }
 
-    function FaleSindico(){
-        Linking.openURL(`https://api.whatsapp.com/send?phone=5582981129518&text=Olá%20Sindico!`);
-    }
 
     function Apoio(){
         navigation.navigate('Apoio')
@@ -147,7 +144,6 @@ export default function Home({navigation}){
                 <Card name={"Reservas"} icon={Calendar} press={Reservas}/>
                 <Card name={"Correspondência"} icon={Mail} press={Correspondencia}/>
                 <Card name={"Solicitar apoio"} icon={ApoioImg} press={Apoio}/>
-                <Card name={"Fale sindico"} icon={Star} press={FaleSindico}/>
                 {/* <Card name={"REMOVER EMPRESA"}  press={REMOVEASYNC}/> */}
 
             </ScrollView>
