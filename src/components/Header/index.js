@@ -18,7 +18,7 @@ export default function Header({}){
             <Image source={Logo} style={{width:50, height:50}}/>
         </View>
 
-        <Text style={{color:"#000"}}>Version:1.3.4</Text>
+        <Text style={{color:"#000"}}>Version:1.5.4</Text>
     </View>
         
     </>
