@@ -153,7 +153,7 @@ export default function Reservas({navigation}){
                    
                 <View style={styles.containerSelect}>
                     <Text style={styles.paragraph}>
-                        Ambientes
+                        Ambientes {value}
                     </Text>
 
                     <DropDownPicker
