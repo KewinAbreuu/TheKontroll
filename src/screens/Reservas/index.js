@@ -54,13 +54,7 @@ export default function Reservas({navigation}){
 
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState(null);
-    const [items, setItems] = useState([
-        // {label: 'Piscina', value: 'Piscina', key:123},
-        // {label: 'Salão de festas', value: 'Salão de festas', key:1234},
-        // {label: 'Parque', value: 'Parque', key:1235},
-        // {label: 'Academia', value: 'Academia', key:1236},
-      
-    ]);
+    const [items, setItems] = useState([]);
 
     const [posts, setPosts]=useState([])
 
@@ -157,17 +151,17 @@ export default function Reservas({navigation}){
                     </Text>
 
                     <DropDownPicker
-                    open={open}
-                    value={value}
-                    items={posts}
-                    setOpen={setOpen}
-                    setValue={setValue}
-                    setItems={setItems}
-                    placeholder="Selecione um Ambiente"
-                    itemKey={posts.id}
-                    searchable={true}
-                    searchPlaceholder="Digite o nome de um ambiente"
-                    listMode="MODAL"
+                     open={open}
+                     value={value}
+                     items={posts}
+                     setOpen={setOpen}
+                     setValue={setValue}
+                     setItems={setItems}
+                     placeholder="Selecione um Morador"
+                     itemKey={posts.id}
+                     searchable={true}
+                     searchPlaceholder="Digite o nome de um Morador"
+                     listMode="MODAL"
                     />
                     
                 </View>
