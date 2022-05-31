@@ -92,7 +92,7 @@ export default function Ocorrencia({navigation}){
         'Ocorrência Realizada com Sucesso!', [
         {
           text: 'OK',
-          onPress: () => navigation.navigate('Home')
+          onPress: () => navigation.navigate('ListOcorrencia')
         },
       ],
         )
@@ -217,7 +217,7 @@ const styles = StyleSheet.create({
     },
     inputArea:{
         backgroundColor:"#cdcdcd",
-        width:"100%",
+        width:360,
         padding:10,
         borderRadius:10,
         marginBottom:20,

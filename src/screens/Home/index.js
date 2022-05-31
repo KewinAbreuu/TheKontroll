@@ -62,7 +62,7 @@ export default function Home({navigation}){
     }
 
     function Ocorrencias(){
-        navigation.navigate('Ocorrencia')
+        navigation.navigate('ListOcorrencia')
     }
 
     function IrAdm(){

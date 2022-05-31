@@ -12,6 +12,7 @@ import Adm from '../../src/screens/Adm'
 import UserPerfil from '../../src/screens/UserPerfil'
 import EmpresaConfig from '../../src/screens/Config'
 import Ocorrencia from '../../src/screens/Ocorrencias'
+import ListOcorrencia from '../../src/screens/ListOcorrencias'
 import Apoio from '../../src/screens/Apoio'
 import Reservas from '../../src/screens/Reservas'
 import ScanPlantao from '../../src/screens/ScanPlantao'
@@ -32,6 +33,7 @@ export const Routes = ()=>{
                 <Stack.Screen name='UserPerfil' component={UserPerfil}/>
                 <Stack.Screen name='EmpresaConfig' component={EmpresaConfig}/>
                 <Stack.Screen name='Ocorrencia' component={Ocorrencia}/>
+                <Stack.Screen name='ListOcorrencia' component={ListOcorrencia}/>
                 <Stack.Screen name='Apoio' component={Apoio}/>
                 <Stack.Screen name='Reservas' component={Reservas}/>
                 <Stack.Screen name='ScanPlantao' component={ScanPlantao}/>
