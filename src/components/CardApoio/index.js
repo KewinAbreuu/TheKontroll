@@ -20,6 +20,8 @@ export default function CardApoio({id,name,contato,press}){
          Linking.openURL(`tel:${contato}`);
     }
 
+  
+
     return(
         <TouchableOpacity style={styles.container} >
             
