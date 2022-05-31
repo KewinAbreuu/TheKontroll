@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
       paddingHorizontal:10,
     //   marginLeft:10,
     //   marginRight:10,
-      marginBottom:20
+      marginBottom:5
     },
     btn1:{
         width:50,
