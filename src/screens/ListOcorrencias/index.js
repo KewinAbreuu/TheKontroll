@@ -33,10 +33,12 @@ export default function ListOcorrencia({navigation}){
       setDate(currentDate)
 
       let tempDate = new Date (currentDate);
-      let fDate = tempDate.getDate()+ '/' + (tempDate.getMonth() + 1) + '/' + tempDate.getFullYear();
-      let fTime = tempDate.getHours() + ':' + tempDate.getMinutes()
-
-          setDataDia(fDate)
+      const dia = String(tempDate.getDate()).padStart(2, '0');
+      const mes = String(tempDate.getMonth() + 1).padStart(2, '0');
+      const ano = String(tempDate.getFullYear()).padStart(2, '0');
+      let Dataok = dia + '/' + mes + '/' + ano
+          setDataDia(Dataok)
+          console.log(Dataok)
   }
 // CALENDARIO
 
@@ -47,25 +49,15 @@ export default function ListOcorrencia({navigation}){
   }
 
       // Obtém a data/hora atual
-      var data = new Date();
+      let data = new Date ();
 
-      // Guarda cada pedaço em uma variável
-      var dia     = data.getDate();           // 1-31
-      var dia_sem = data.getDay();            // 0-6 (zero=domingo)
-      var mes     = data.getMonth();          // 0-11 (zero=janeiro)
-      var ano2    = data.getYear();           // 2 dígitos
-      var ano4    = data.getFullYear();       // 4 dígitos
-      var hora    = data.getHours();          // 0-23
-      var min     = data.getMinutes();        // 0-59
-      var seg     = data.getSeconds();        // 0-59
-      var mseg    = data.getMilliseconds();   // 0-999
-      var tz      = data.getTimezoneOffset(); // em minutos
+      const dia = String(data.getDate()).padStart(2, '0');
+      const mes = String(data.getMonth() + 1).padStart(2, '0');
+      const ano = String(data.getFullYear()).padStart(2, '0');
+      let Dataok = dia + '/' + mes + '/' + ano
   
-      // Formata a data e a hora (note o mês + 1)
-      var str_data = dia + '/' + (mes+1) + '/' + ano4;
-      var str_hora = hora + ':' + min + ':' + seg;
-
-      const [dataDia, setDataDia] =useState(str_data);
+     
+      const [dataDia, setDataDia] =useState(Dataok);
 
     useEffect(()=>{
           function loadPost(){

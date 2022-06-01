@@ -64,9 +64,15 @@ export default function Ocorrencia({navigation}){
         var tz      = data.getTimezoneOffset(); // em minutos
     
         // Formata a data e a hora (note o mês + 1)
-        var str_data = dia + '/' + (mes+1) + '/' + ano4;
         var str_hora = hora + ':' + min + ':' + seg;
-        setDate(str_data)
+
+        let data2 = new Date ();
+
+        const dia2 = String(data2.getDate()).padStart(2, '0');
+        const mes2 = String(data2.getMonth() + 1).padStart(2, '0');
+        const ano = String(data2.getFullYear()).padStart(2, '0');
+        let Dataok = dia2 + '/' + mes2 + '/' + ano
+        setDate(Dataok)
         setHora(str_hora)
       }
 

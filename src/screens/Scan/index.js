@@ -94,11 +94,18 @@ async function getData(){
     var str_data = dia + '/' + (mes+1) + '/' + ano4;
     var str_hora = hora + ':' + min + ':' + seg;
 
+    let data2 = new Date ();
+
+    const dia2 = String(data2.getDate()).padStart(2, '0');
+    const mes2 = String(data2.getMonth() + 1).padStart(2, '0');
+    const ano = String(data2.getFullYear()).padStart(2, '0');
+    let Dataok = dia2 + '/' + mes2 + '/' + ano
+
   function handdleBd(){
     firebase.firestore().collection('ronda')
     .add({
       Local: qr,
-      Date: str_data,
+      Date: Dataok,
       Hora: str_hora,
       Data: firebase.firestore.FieldValue.serverTimestamp(),
       Descricao: desc,
