@@ -18,6 +18,7 @@ import Reservas from '../../src/screens/Reservas'
 import ScanPlantao from '../../src/screens/ScanPlantao'
 import Dispositivos from '../../src/screens/Dispositivos'
 import Correspondencia from '../../src/screens/Correspondencia'
+import AddDevice from '../../src/screens/AddDevice'
 
 export const Routes = ()=>{
     const Stack = createNativeStackNavigator();
@@ -39,6 +40,7 @@ export const Routes = ()=>{
                 <Stack.Screen name='ScanPlantao' component={ScanPlantao}/>
                 <Stack.Screen name='Dispositivos' component={Dispositivos}/>
                 <Stack.Screen name='Correspondencia' component={Correspondencia}/>
+                <Stack.Screen name='AddDevice' component={AddDevice}/>
             </Stack.Navigator>
         </NavigationContainer>
     )
