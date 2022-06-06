@@ -193,6 +193,7 @@ const styles = StyleSheet.create({
         marginLeft:5,
         marginBottom:20,
         marginTop:20,
+        // tes
     },
     texto1:{
      marginLeft:20,
