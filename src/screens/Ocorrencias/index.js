@@ -1,5 +1,5 @@
 import react, {useState, useEffect} from "react";
-import {StyleSheet,SafeAreaView, StatusBar,Text, View, Image, TextInput, TouchableOpacity, ScrollView, Alert}from 'react-native'
+import {StyleSheet,SafeAreaView, StatusBar,Text, View, Image, TextInput, TouchableOpacity, ScrollView, Alert, Appearance}from 'react-native'
 
 import Header from "../../components/Header";
 
@@ -118,7 +118,7 @@ export default function Ocorrencia({navigation}){
         <SafeAreaView style={styles.container} > 
     
     <KeyboardAvoidingView contentContainerStyle={{ flex:1}} behavior="position" enabled>
-    <Text style={{color:"#000", fontSize:20,fontWeight:"bold", marginBottom:30, alignSelf:"center"}}>Livro de Ocorrências</Text>
+    <Text style={styles.Titulo}>Livro de Ocorrências</Text>
 
             
             <View style={{flexDirection:"row", width:"90%", marginBottom:10}}>
@@ -138,19 +138,19 @@ export default function Ocorrencia({navigation}){
                 <View style={{flexDirection:"row", marginBottom:30}}>
                     <Animatable.View animation="fadeInRightBig"   duration={800} useNativeDriver={true} delay={0} style={styles.btnRadio}>
                         <RadioButton value="Baixa"  color="#4169E1"  uncheckedColor="#cdcdcd"/>
-                        <Text>Baixa</Text>
+                        <Text style={styles.texto}>Baixa</Text>
                     </Animatable.View>
                     <Animatable.View animation="fadeInRightBig"   duration={800} useNativeDriver={true} delay={100} style={styles.btnRadio}>
                         <RadioButton value="Média"  color="#4169E1"  uncheckedColor="#cdcdcd"/>
-                        <Text>Média</Text>
+                        <Text style={styles.texto}>Média</Text>
                     </Animatable.View>
                     <Animatable.View animation="fadeInRightBig"   duration={800} useNativeDriver={true} delay={200} style={styles.btnRadio}>
                         <RadioButton value="Alta"  color="#4169E1"  uncheckedColor="#cdcdcd"/>
-                        <Text>Alta</Text>
+                        <Text style={styles.texto}>Alta</Text>
                     </Animatable.View>
                     <Animatable.View animation="fadeInRightBig"   duration={800} useNativeDriver={true} delay={300} style={styles.btnRadio}>
                         <RadioButton value="Urgente"  color="#4169E1"  uncheckedColor="#cdcdcd"/>
-                        <Text>Urgente</Text>
+                        <Text style={styles.texto}>Urgente</Text>
                     </Animatable.View>
                 </View>
             </RadioButton.Group>
@@ -175,17 +175,19 @@ export default function Ocorrencia({navigation}){
     </>
     )
 }
+const colorScheme = Appearance.getColorScheme();
+
 
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#fff',
+      backgroundColor:colorScheme==="light"?"#222":"#222",
       alignItems: 'center',
       paddingTop:50,
     },
     textoRonda:{
         fontSize:20,
-        color:"#000",
+        color:colorScheme==="light"?"#fff":"#fff",
         marginBottom:20,
         fontWeight:"bold"
     },
@@ -229,14 +231,14 @@ const styles = StyleSheet.create({
         marginBottom:20,
         height:150,
         fontSize:20,
-        color:"#000",
+        color:colorScheme==="light"?"#000":"#000",
         textAlign:"justify",
     },
     texto:{
         alignSelf:"flex-start",
         // marginLeft:30,
         fontSize:16,
-        color:"#000",
+        color:colorScheme==="light"?"#fff":"#fff",
         marginBottom:5
     },
     BtnTroca:{
@@ -252,6 +254,13 @@ const styles = StyleSheet.create({
     },
     btnRadio:{
         marginRight:30
+    },
+    Titulo:{
+        color:colorScheme==="light"?"#fff":"#fff",
+        fontSize:20,
+        fontWeight:"bold",
+        marginBottom:30,
+        alignSelf:"center",
     }
  
   });

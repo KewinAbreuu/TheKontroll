@@ -1,11 +1,12 @@
-import {View,Text,  StyleSheet, Image, TouchableOpacity}from 'react-native'
+import react,{useState, useEffect}from 'react'
+import {View,Text,  StyleSheet, Image, TouchableOpacity, Appearance}from 'react-native'
 
 import firebase from "../../firebaseConnection";
 
 
 export default function Devices({on,off,pressOn,pressOff,name,comando}){
 
-    
+
     function Ligar(){
         
         firebase.database().ref(`/${comando}`).update({
@@ -25,7 +26,7 @@ export default function Devices({on,off,pressOn,pressOff,name,comando}){
 
     return(
         <View style={{flexDirection:"column", justifyContent:"center", alignItems:"center"}}>
-                <Text style={{fontWeight:"bold", marginBottom:10}}>{name}</Text>
+                <Text style={styles.text}>{name}</Text>
             <View style={{flexDirection:"row"}}>
                 <TouchableOpacity style={styles.container} onPress={Ligar}>
                     <View style={styles.button}>
@@ -42,6 +43,8 @@ export default function Devices({on,off,pressOn,pressOff,name,comando}){
         </View>
     )
 }
+const colorScheme = Appearance.getColorScheme();
+
 
 const styles = StyleSheet.create({
     container: {
@@ -60,6 +63,12 @@ const styles = StyleSheet.create({
         height:34,
         justifyContent:"center",
         alignItems:"center",
+    },
+    text:{
+        // fontSize:16,
+        color:colorScheme==="light"?"#fff":"#fff",
+        fontWeight:"bold",
+        marginBottom:10
     }
     
   });

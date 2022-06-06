@@ -1,5 +1,5 @@
 import react, {useState, useEffect} from "react";
-import {StyleSheet,SafeAreaView, StatusBar, ScrollView, Text, TextInput, Button, Platform, View, TouchableOpacity, Image, FlatList, Alert }from 'react-native'
+import {StyleSheet,SafeAreaView, StatusBar, ScrollView, Text,Appearance }from 'react-native'
 
 
 import Header from "../../components/Header";
@@ -54,7 +54,7 @@ export default function Correspondencia({navigation}){
         <SafeAreaView style={styles.container} > 
             <ScrollView style={styles.containerScroll}>
 
-            <Text style={{color:"#000", fontSize:20,fontWeight:"bold", marginBottom:20, alignSelf:"center"}}>Solicitar Apoio</Text>
+            <Text style={styles.texto}>Solicitar Apoio</Text>
                    
           {posts.map((post)=>{
             
@@ -73,6 +73,9 @@ export default function Correspondencia({navigation}){
     )
 }
 
+const colorScheme = Appearance.getColorScheme();
+
+
 const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -81,7 +84,7 @@ const styles = StyleSheet.create({
     containerScroll: {
         flex: 1 ,
         width:"100%",
-        backgroundColor: '#fff',
+        backgroundColor:colorScheme==="light"?"#222":"#222",
         marginTop:0,
         paddingTop:30},
 
@@ -102,16 +105,12 @@ const styles = StyleSheet.create({
             justifyContent:"center"
     },
     texto:{
-        alignSelf:"flex-start",
-        marginLeft:20,
-        fontSize:16,
-        color:"#000",
-        marginBottom:5
+      color:colorScheme==="light"?"#fff":"#fff",
+      fontSize:20,
+      fontWeight:"bold",
+      marginBottom:20,
+      alignSelf:"center"
     },
-
-    containerSelect: {
-      
-      },
       paragraph: {
         marginTop:10,
         marginBottom:20,

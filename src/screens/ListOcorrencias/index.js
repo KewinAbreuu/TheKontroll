@@ -1,5 +1,5 @@
 import react, {useState, useEffect} from "react";
-import {StyleSheet,SafeAreaView, StatusBar, ScrollView, Text, TextInput, Button, Platform, View, TouchableOpacity, Image, FlatList, Alert }from 'react-native'
+import {StyleSheet,SafeAreaView, StatusBar, ScrollView, Text, Platform, View, TouchableOpacity, Image, Appearance }from 'react-native'
 
 
 import Header from "../../components/Header";
@@ -107,10 +107,10 @@ export default function ListOcorrencia({navigation}){
         <SafeAreaView style={styles.container} > 
             <ScrollView style={styles.containerScroll}>
 
-            <Text style={{color:"#000", fontSize:20,fontWeight:"bold", marginBottom:20, alignSelf:"center"}}>Livro de Ocorrências</Text>
+            <Text style={styles.Titulo}>Livro de Ocorrências</Text>
            
             <View style={{flexDirection:"row", justifyContent:"center", alignItems:"center", marginBottom:20}}>
-              <Text style={{color:"#000", fontSize:14,fontWeight:"bold"}}>{dataDia}</Text>
+              <Text style={styles.data}>{dataDia}</Text>
               <TouchableOpacity style={{backgroundColor:"#447CE0", width:30, height:30, borderRadius:10, marginLeft:5, justifyContent:"center", alignItems:"center"}}  onPress={()=> showMode('date')}>
                   <Image source={Calendario} style={{width:20, height:20}}/>
               </TouchableOpacity>
@@ -150,6 +150,9 @@ export default function ListOcorrencia({navigation}){
     )
 }
 
+const colorScheme = Appearance.getColorScheme();
+
+
 const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -158,7 +161,7 @@ const styles = StyleSheet.create({
     containerScroll: {
         flex: 1 ,
         width:"100%",
-        backgroundColor: '#fff',
+        backgroundColor:colorScheme==="light"?"#222":"#222",
         marginTop:0,
         paddingTop:30},
 
@@ -168,7 +171,6 @@ const styles = StyleSheet.create({
             padding:10,
             borderRadius:10, 
             justifyContent:"center"
-            // alignSelf:"center"
         },
     
     inputForm:{
@@ -182,7 +184,7 @@ const styles = StyleSheet.create({
         alignSelf:"flex-start",
         marginLeft:20,
         fontSize:16,
-        color:"#000",
+        color:colorScheme==="light"?"#fff":"#fff",
         marginBottom:5
     },
 
@@ -210,6 +212,18 @@ const styles = StyleSheet.create({
     },
     viewInput:{
         width:"100%", flexDirection:"column", justifyContent:"center", alignItems:"center", marginTop:20
+    },
+    Titulo:{
+      color:colorScheme==="light"?"#fff":"#fff",
+      fontSize:20,
+      fontWeight:"bold",
+      marginBottom:20,
+      alignSelf:"center"
+    },
+    data:{
+      color:colorScheme==="light"?"#fff":"#fff",
+      fontSize:14,
+      fontWeight:"bold"
     }
 
   });

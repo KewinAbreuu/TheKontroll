@@ -11,24 +11,13 @@ import { Routes } from './src/routes';
 
 export default function App() {
 
-  // function Enviar(){
-  //   firebase.firestore().collection('usuario')
-  //   .add({
-  //     Qr:"QRCODE"
-  //   })
-  //   .then(()=>{
-  //     alert('Deu certo')
-  //   })
-  //   .catch((e)=>{
-  //     alert(e)
-  //   })
-  // }
 
   LogBox.ignoreAllLogs(true)
 
   return (
     
     <Routes/>
+    
 
   );
 }
