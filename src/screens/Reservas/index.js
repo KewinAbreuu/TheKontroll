@@ -1,5 +1,5 @@
 import react, {useState, useEffect} from "react";
-import {StyleSheet,SafeAreaView, StatusBar, ScrollView, Text, TextInput, Button, Platform, View, TouchableOpacity, Image, FlatList, Alert }from 'react-native'
+import {StyleSheet,SafeAreaView, StatusBar, ScrollView, Text, TextInput, Platform, View, TouchableOpacity, Image, FlatList, Appearance }from 'react-native'
 
 
 import Header from "../../components/Header";
@@ -143,7 +143,7 @@ export default function Reservas({navigation}){
         <SafeAreaView style={styles.container} > 
             <ScrollView style={styles.containerScroll}>
 
-            <Text style={{color:"#000", fontSize:20,fontWeight:"bold", marginBottom:20, alignSelf:"center"}}>Reservas</Text>
+            <Text style={styles.Titulo}>Reservas</Text>
                    
                 <View style={styles.containerSelect}>
                     <Text style={styles.paragraph}>
@@ -234,6 +234,9 @@ export default function Reservas({navigation}){
     )
 }
 
+const colorScheme = Appearance.getColorScheme();
+
+
 const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -242,7 +245,7 @@ const styles = StyleSheet.create({
     containerScroll: {
         flex: 1 ,
         width:"100%",
-        backgroundColor: '#fff',
+        backgroundColor:colorScheme==="light"?"#222":"#222",
         marginTop:0,
         paddingTop:30},
 
@@ -266,7 +269,7 @@ const styles = StyleSheet.create({
         alignSelf:"flex-start",
         marginLeft:20,
         fontSize:16,
-        color:"#000",
+        color:colorScheme==="light"?"#fff":"#fff",
         marginBottom:5
     },
 
@@ -279,7 +282,7 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: 'bold',
         textAlign: 'center',
-        color:"#000"
+        color:colorScheme==="light"?"#fff":"#fff",
       },
       BtnTroca:{
         width:300,
@@ -294,6 +297,13 @@ const styles = StyleSheet.create({
     },
     viewInput:{
         width:"100%", flexDirection:"column", justifyContent:"center", alignItems:"center", marginTop:20
+    },
+    Titulo:{
+      color:colorScheme==="light"?"#fff":"#fff",
+      fontSize:20,
+      fontWeight:"bold",
+      marginBottom:20,
+      alignSelf:"center"
     }
 
   });

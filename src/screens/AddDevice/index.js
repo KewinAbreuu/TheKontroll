@@ -1,5 +1,5 @@
 import react, {useState, useEffect} from "react";
-import {StyleSheet,SafeAreaView, StatusBar,Text, View, Image, TextInput, TouchableOpacity, ScrollView, Alert}from 'react-native'
+import {StyleSheet,SafeAreaView, StatusBar,Text, View, Image, TextInput, TouchableOpacity, ScrollView, Alert, Appearance}from 'react-native'
 
 import Header from "../../components/Header";
 
@@ -46,11 +46,10 @@ export default function AddDevice({navigation}){
     <>
     <StatusBar/>
     <Header/>
-    <ScrollView>
+    <ScrollView >
         <SafeAreaView style={styles.container} > 
     
-    <KeyboardAvoidingView contentContainerStyle={{ flex:1}} behavior="position" enabled>
-    <Text style={{color:"#000", fontSize:20,fontWeight:"bold", marginBottom:30, alignSelf:"center"}}>Adicionar Dispositivo</Text>
+         <Text style={styles.Titulo}>Adicionar Dispositivo</Text>
 
 
             <Animatable.View animation="fadeIn"   duration={2500} useNativeDriver={true} delay={300}>
@@ -63,19 +62,19 @@ export default function AddDevice({navigation}){
                     <View style={{flexDirection:"row", marginBottom:30}}>
                         <Animatable.View animation="fadeInRightBig"   duration={800} useNativeDriver={true} delay={0} style={styles.btnRadio}>
                             <RadioButton value="D1"  color="#4169E1"  uncheckedColor="#cdcdcd"/>
-                            <Text>D1</Text>
+                            <Text style={styles.texto2}>D1</Text>
                         </Animatable.View>
                         <Animatable.View animation="fadeInRightBig"   duration={800} useNativeDriver={true} delay={100} style={styles.btnRadio}>
                             <RadioButton value="D2"  color="#4169E1"  uncheckedColor="#cdcdcd"/>
-                            <Text>D2</Text>
+                            <Text style={styles.texto2}>D2</Text>
                         </Animatable.View>
                         <Animatable.View animation="fadeInRightBig"   duration={800} useNativeDriver={true} delay={200} style={styles.btnRadio}>
                             <RadioButton value="D3"  color="#4169E1"  uncheckedColor="#cdcdcd"/>
-                            <Text>D3</Text>
+                            <Text style={styles.texto2}>D3</Text>
                         </Animatable.View>
                         <Animatable.View animation="fadeInRightBig"   duration={800} useNativeDriver={true} delay={300} style={styles.btnRadio}>
                             <RadioButton value="D4"  color="#4169E1"  uncheckedColor="#cdcdcd"/>
-                            <Text>D4</Text>
+                            <Text style={styles.texto2}>D4</Text>
                         </Animatable.View>
                     </View>
                 </RadioButton.Group>
@@ -84,7 +83,6 @@ export default function AddDevice({navigation}){
                     <Text style={{color:"#fff"}}>Adicionar</Text>
                 </TouchableOpacity>
             </Animatable.View>
-    </KeyboardAvoidingView>
                
         </SafeAreaView>
     </ScrollView>
@@ -92,16 +90,19 @@ export default function AddDevice({navigation}){
     )
 }
 
+const colorScheme = Appearance.getColorScheme();
+
+
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#fff',
+      backgroundColor:colorScheme==="light"?"#222":"#222",
       alignItems: 'center',
       paddingTop:50,
     },
      input:{
         backgroundColor:"#cdcdcd",
-        width:"100%",
+        width:300,
         padding:10,
         borderRadius:10,
         marginBottom:20
@@ -109,10 +110,16 @@ const styles = StyleSheet.create({
    
     texto:{
         alignSelf:"flex-start",
-        // marginLeft:30,
         fontSize:16,
-        color:"#000",
+        color:colorScheme==="light"?"#fff":"#fff",
         marginBottom:5
+    },
+    
+    texto2:{
+        alignSelf:"flex-start",
+        color:colorScheme==="light"?"#fff":"#fff",
+        marginBottom:5,
+        marginLeft:10
     },
     BtnTroca:{
         width:300,
@@ -122,11 +129,18 @@ const styles = StyleSheet.create({
         justifyContent:"center",
         borderRadius:30,
         marginTop:15,
-        marginBottom:5,
+        marginBottom:400,
         alignSelf:"center"
     },
     btnRadio:{
-        marginRight:30
+        marginRight:30,
+    },
+    Titulo:{
+        color:colorScheme==="light"?"#fff":"#fff",
+        fontSize:20,
+        fontWeight:"bold",
+        marginBottom:30,
+        alignSelf:"center"
     }
     
   });

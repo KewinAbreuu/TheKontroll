@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, TouchableOpacity, Button, TextInput, Alert } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity, Button, TextInput, Alert, Appearance } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 
 import firebase from '../../firebaseConnection';
@@ -156,7 +156,7 @@ async function getData(){
     </View>
 
     <View style={{backgroundColor:"#fff", position:"absolute", bottom:0, width:"100%"}}>
-    <RadioButton.Group onValueChange={newValue => setValue(newValue)} value={value}>
+    <RadioButton.Group onValueChange={newValue => setValue(newValue)} value={value} style={StyleSheet.btnRadio}>
                 <Text style={{marginLeft:15}}>Condições:</Text>
                   <View style={{flexDirection:"row", justifyContent:"space-around", marginBottom:5}}>
                       <View tyle={styles.btnRadio}>
@@ -188,7 +188,7 @@ async function getData(){
    
 
     <View>
-            <TextInput style={{color:"#000", padding:20}} placeholder="Observações" onChangeText={setDesc} value={desc}/>
+            <TextInput style={styles.obs} placeholder="Observações" onChangeText={setDesc} value={desc}/>
     </View>
 
     <View>
@@ -200,11 +200,15 @@ async function getData(){
   );
 }
 
+const colorScheme = Appearance.getColorScheme();
+
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
+    backgroundColor:colorScheme==="light"?"#fff":"#fff",
   },
   btn:{
       width:"100%",
@@ -228,6 +232,11 @@ textoButtons:{
   btnRadio:{
         // marginLeft:20,
         // justifyContent:"center"
+    },
+    obs:{
+      backgroundColor:colorScheme==="light"?"#cdcdcd":"#cdcdcd",
+      padding:20,
+      color:"#fff"
     }
 
 });

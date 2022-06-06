@@ -1,5 +1,5 @@
 import react, {useState,useEffect} from "react";
-import {StyleSheet,SafeAreaView, StatusBar,Text, View, ScrollView}from 'react-native'
+import {StyleSheet,SafeAreaView, StatusBar,Text, View, ScrollView, Appearance}from 'react-native'
 import BtnFlutter from "../../components/BtnFlutter";
 
 import Header from "../../components/Header";
@@ -72,10 +72,10 @@ export default function Dispositivos({navigation}){
     <Header/>
         <SafeAreaView style={styles.container} >
 
-            <Text style={{color:"#000", fontSize:20,fontWeight:"bold", marginBottom:30, alignSelf:"center"}}>Dispositivos</Text>
+            <Text style={styles.Titulo}>Dispositivos</Text>
             <ScrollView style={styles.containerScroll}>
               {/* CASA PARIPUEIRA */}
-             <Text style={{color:"#000",fontWeight:"bold", marginBottom:20, alignSelf:"center"}}>Casa_Paripueira</Text>
+             <Text style={{color:"#fff",fontWeight:"bold", marginBottom:20, alignSelf:"center"}}>Casa_Paripueira</Text>
                 <View style={{flexDirection:"row", marginBottom:20}}>
                   <CardFIXO name="On" icon={Icon}  press={Ligar} />
                   <CardFIXO name="Off" icon={Icon}  press={desligar} />
@@ -97,18 +97,27 @@ export default function Dispositivos({navigation}){
     )
 }
 
+const colorScheme = Appearance.getColorScheme();
+
+
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#fff',
+      backgroundColor:colorScheme==="light"?"#222":"#222",
       alignItems: 'center',
       paddingTop:50
     },
     containerScroll: {
         flex: 1 ,
-        // width:"100%",
-        backgroundColor: '#fff',
+        backgroundColor:colorScheme==="light"?"#222":"#222",
         marginTop:0,
+    },
+    Titulo:{
+      color:colorScheme==="light"?"#fff":"#fff",
+      fontSize:20,
+      fontWeight:"bold",
+      marginBottom:30,
+      alignSelf:"center"
     }
     
   });

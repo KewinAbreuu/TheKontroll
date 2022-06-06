@@ -1,5 +1,5 @@
 import react, {} from "react";
-import {StyleSheet,SafeAreaView, StatusBar,Text, View, Image}from 'react-native'
+import {StyleSheet,SafeAreaView, StatusBar,Text, View, Image, Appearance}from 'react-native'
 import BtnFlutter from "../../components/BtnFlutter";
 
 import Header from "../../components/Header";
@@ -42,17 +42,19 @@ export default function Ronda({navigation}){
     </>
     )
 }
+const colorScheme = Appearance.getColorScheme();
+
 
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#fff',
+      backgroundColor:colorScheme==="light"?"#222":"#222",
       alignItems: 'center',
       paddingTop:50
     },
     textoRonda:{
         fontSize:20,
-        color:"#000",
+        color:colorScheme==="light"?"#FFF":"#FFF",
         marginBottom:15,
         marginTop:30,
         fontWeight:"bold"
