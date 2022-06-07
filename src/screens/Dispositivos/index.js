@@ -25,7 +25,7 @@ export default function Dispositivos({navigation}){
     useEffect(()=>{
         function loadPost(){
   
-          firebase.firestore().collection('devices')
+          firebase.firestore().collection('devices').orderBy("Data","asc")
         .onSnapshot((doc)=>{
           let meusPosts=[];
   
@@ -34,6 +34,7 @@ export default function Dispositivos({navigation}){
               id:item.id,
               Name: item.data().name,
               Comando: item.data().comando,
+              Status:item.data().status
             })
           });
           
@@ -52,18 +53,6 @@ export default function Dispositivos({navigation}){
         navigation.navigate('AddDevice')
     }
 
-    function Ligar(){
-        
-      firebase.database().ref('/').update({
-          L1:'0'
-        });
-  }
-
-  function desligar(){
-      firebase.database().ref('/').update({
-          L1:'1'
-        });
-  }
  
 
     return(
@@ -75,18 +64,10 @@ export default function Dispositivos({navigation}){
             <Text style={styles.Titulo}>Dispositivos</Text>
             <ScrollView style={styles.containerScroll}>
               <View style={{alignItems:"center", marginLeft:10}}>
-              {/* CASA PARIPUEIRA */}
-             <Text style={{color:"#fff",fontWeight:"bold", marginBottom:20, alignSelf:"center"}}>Casa_Paripueira</Text>
-                <View style={{flexDirection:"row", marginBottom:20}}>
-                  <CardFIXO name="On" icon={Icon}  press={Ligar} />
-                  <CardFIXO name="Off" icon={Icon}  press={desligar} />
-                </View>
-              {/* CASA PARIPUEIRA */}
-
                     {posts.map((post)=>{
                         return(
-                        <View style={{flexDirection:"row", marginTop:20}}>
-                            <Card name={post.Name} on="On" off="Off" comando={post.Comando}  pressOff="Desligar" />
+                        <View style={{flexDirection:"row", marginTop:20}} key={post.id}>
+                            <Card  name={post.Name} on="On" off="Off" comando={post.Comando}  pressOff="Desligar" id={post.id}  status={post.Status}/>
                         </View>
                         )
                     })}

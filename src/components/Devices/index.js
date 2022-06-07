@@ -4,29 +4,62 @@ import {View,Text,  StyleSheet, Image, TouchableOpacity, Appearance}from 'react-
 import firebase from "../../firebaseConnection";
 
 
-export default function Devices({on,off,pressOn,pressOff,name,comando}){
+export default function Devices({on,off,pressOn,pressOff,name,comando,id, status}){
 
 
     function Ligar(){
         
         firebase.database().ref(`/${comando}`).update({
-            // L1:'0'
-            A:'0'
+            L1:'0'
+            // L2:'0'
           });
+
+          StatusOn()
     }
 
     function desligar(){
         firebase.database().ref(`/${comando}`).update({
-            // L1:'1'
-            A:'1'
+            L1:'1'
+            // L2:'1'
           });
-    }
-   
 
+          StatusOff()
+    }
+
+   function StatusOn(){
+       firebase.firestore().collection('devices')
+       .doc(id)
+       .update({
+           status:"on"
+       })
+   }
+
+   
+   function StatusOff(){
+    firebase.firestore().collection('devices')
+    .doc(id)
+    .update({
+        status:"off"
+    })
+}
+
+    function Delete(){
+        firebase.firestore().collection('devices')
+        .doc(id)
+        .delete()
+    }
 
     return(
-        <View style={{flexDirection:"column", justifyContent:"center", alignItems:"center"}}>
-                <Text style={styles.text}>{name}</Text>
+        <View style={{flexDirection:"column", justifyContent:"center", alignItems:"center", flex:1}}>
+                <View style={status === 'off' ? {backgroundColor:"red", height:30, width:"100%", alignItems:"center", justifyContent:"flex-start", marginBottom:20, borderRadius:5, flexDirection:"row" ,marginRight:10}:
+                                                 {backgroundColor:"green", height:30, width:"100%", alignItems:"center", justifyContent:"flex-start", marginBottom:20, borderRadius:5, flexDirection:"row" ,marginRight:10}}>
+                     <TouchableOpacity onPress={Delete} style={{backgroundColor:"#fff", width:20,height:20,borderRadius:50,justifyContent:"center",alignItems:"center", marginRight:50, marginLeft:10}}>
+                        <Text style={{fontWeight:"bold"}}>X</Text>
+                    </TouchableOpacity>
+                    <Text style={styles.text}>{name}</Text>
+                   
+                </View>
+                
             <View style={{flexDirection:"row"}}>
                 <TouchableOpacity style={styles.container} onPress={Ligar}>
                     <View style={styles.button}>
@@ -49,7 +82,7 @@ const colorScheme = Appearance.getColorScheme();
 const styles = StyleSheet.create({
     container: {
       flexDirection:'row',
-      width:76,
+      width:150,
       height:56,
       backgroundColor: '#4169E1',
       alignItems: 'center',
@@ -68,7 +101,6 @@ const styles = StyleSheet.create({
         // fontSize:16,
         color:colorScheme==="light"?"#fff":"#fff",
         fontWeight:"bold",
-        marginBottom:10
     }
     
   });

@@ -22,7 +22,9 @@ export default function AddDevice({navigation}){
          firebase.firestore().collection('devices')
         .add({
             name:name,
-            comando:value
+            comando:value,
+            status:"off",
+            Data: firebase.firestore.FieldValue.serverTimestamp(),
         })
         .then(()=>{
             Alert.alert(
@@ -75,6 +77,10 @@ export default function AddDevice({navigation}){
                         <Animatable.View animation="fadeInRightBig"   duration={800} useNativeDriver={true} delay={300} style={styles.btnRadio}>
                             <RadioButton value="D4"  color="#4169E1"  uncheckedColor="#cdcdcd"/>
                             <Text style={styles.texto2}>D4</Text>
+                        </Animatable.View>
+                        <Animatable.View animation="fadeInRightBig"   duration={800} useNativeDriver={true} delay={300} style={styles.btnRadio}>
+                            <RadioButton value=""  color="#4169E1"  uncheckedColor="#cdcdcd"/>
+                            <Text style={styles.texto2}>/</Text>
                         </Animatable.View>
                     </View>
                 </RadioButton.Group>
