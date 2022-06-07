@@ -1,7 +1,7 @@
 
 
 import react, {useState, useEffect} from "react";
-import {StyleSheet,SafeAreaView, StatusBar, Text, TextInput }from 'react-native'
+import {StyleSheet,SafeAreaView, StatusBar, Text, TextInput, Appearance }from 'react-native'
 
 import Header from "../../components/Header";
 
@@ -40,7 +40,7 @@ export default function UserPerfil({navigation}){
     <StatusBar/>
     <Header/>
         <SafeAreaView style={styles.container} > 
-            <Text style={{color:"#000", fontSize:20,fontWeight:"bold", marginBottom:30}}>Configurações</Text>
+            <Text style={styles.nameApp}>Configurações</Text>
 
             <Text style={styles.texto}>Empresa:</Text>
             <TextInput placeholder={empresa} style={styles.input} editable={false} selectTextOnFocus={false} ></TextInput>
@@ -53,10 +53,13 @@ export default function UserPerfil({navigation}){
     )
 }
 
+const colorScheme = Appearance.getColorScheme();
+
+
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#fff',
+      backgroundColor:colorScheme==="light"?"#222222":"#222222",
       alignItems: 'center',
       paddingTop:30,
     },
@@ -71,8 +74,12 @@ const styles = StyleSheet.create({
         alignSelf:"flex-start",
         marginLeft:30,
         fontSize:16,
-        color:"#000",
+        color:colorScheme==="light"?"#fff":"#fff",
         marginBottom:5
+    },
+    nameApp:{
+        fontSize:20,fontWeight:"bold", marginBottom:30,
+        color:colorScheme==="light"?"#fff":"#fff",
     }
     
   });

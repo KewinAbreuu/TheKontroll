@@ -1,5 +1,5 @@
 import react, {useState, useEffect} from "react";
-import {StyleSheet,SafeAreaView, StatusBar, Linking, ScrollView, Text, Image, TouchableOpacity, TextInput,View, Appearance  }from 'react-native'
+import {StyleSheet,SafeAreaView, StatusBar, Linking, ScrollView, Text, Image, TouchableOpacity,View, Appearance  }from 'react-native'
 
 import Card from "../../components/Card";
 import Card2 from '../../components/CardHome2'
@@ -31,6 +31,8 @@ import firebase from '../../firebaseConnection'
 
 import * as Animatable from 'react-native-animatable';
 
+import PopAction from "../../components/PopAction";
+
 
 export default function Home({navigation}){
 
@@ -38,6 +40,7 @@ export default function Home({navigation}){
     const [funcionarioName, setFuncionarioName]= useState(false);
     const [nameCondomino, setNameCondominio] =useState()
 
+    const [estado, setEstado]=useState(true)
 
 
     useEffect(()=>{
@@ -113,11 +116,12 @@ export default function Home({navigation}){
     }
 
 
-
     return(
     <>
     <StatusBar/>
-    <Header/>
+    {/* {estado ===true && <PopAction/>  } */}
+    <Header navigation={navigation}/>
+    
     <ScrollView>
         <View style={styles.container } > 
             <View style={{marginTop:20}}>
@@ -146,7 +150,7 @@ export default function Home({navigation}){
                 <Card name={"Correspondências"} icon={Mail} press={Correspondencia}/>
                 <Card name={"Dispositivos"} icon={Devices} press={Dispositivos}/>
             </View>
-
+{/* 
             <View style={styles.viewCards}>
                 <Card name={"Trocar Plantão"} icon={Replace} press={Plantao}/>
             </View>
@@ -154,9 +158,9 @@ export default function Home({navigation}){
             <View style={styles.viewCards}>
                 <Card name={"Adm"} icon={Adm} press={IrAdm}/>
                 <Card name={"Configurações"} icon={Config} press={Perfil}/>
-                {/* <Card name={"Pânico"} icon={Sirene} press={Panico}/> */}
+                <Card name={"Pânico"} icon={Sirene} press={Panico}/>
             </View>
-            
+             */}
             
         </View>
         </ScrollView>
@@ -174,7 +178,8 @@ const styles = StyleSheet.create({
       backgroundColor:colorScheme==="light"?"#222222":"#222222",
       marginTop:-20,
       zIndex:8,
-      paddingTop:50
+      paddingTop:60,
+      paddingBottom:"50%"
     },
     viewCards:{
         flexDirection:"row",

@@ -74,6 +74,7 @@ export default function Dispositivos({navigation}){
 
             <Text style={styles.Titulo}>Dispositivos</Text>
             <ScrollView style={styles.containerScroll}>
+              <View style={{alignItems:"center", marginLeft:10}}>
               {/* CASA PARIPUEIRA */}
              <Text style={{color:"#fff",fontWeight:"bold", marginBottom:20, alignSelf:"center"}}>Casa_Paripueira</Text>
                 <View style={{flexDirection:"row", marginBottom:20}}>
@@ -90,6 +91,7 @@ export default function Dispositivos({navigation}){
                         )
                     })}
 
+              </View>
           </ScrollView>
             <Btnf icon={Cruz} press={AddDevice}/>
         </SafeAreaView>
@@ -108,7 +110,7 @@ const styles = StyleSheet.create({
       paddingTop:50
     },
     containerScroll: {
-        flex: 1 ,
+        width:"100%",
         backgroundColor:colorScheme==="light"?"#222":"#222",
         marginTop:0,
     },

@@ -1,17 +1,20 @@
 import react, {useState, useEffect} from "react";
-import {View,Text, StyleSheet,Button,SafeAreaView, StatusBar, Image, Appearance}from 'react-native'
+import {View,Text, StyleSheet,Button,SafeAreaView, StatusBar, Image, Appearance, TouchableOpacity}from 'react-native'
 
 import Logo from '../../assets/Logo.png'
 import * as Animatable from 'react-native-animatable';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import PopAction from "../PopAction";
 
 
-export default function Header({}){
+
+export default function HeaderHome({navigation}){
 
     const [funcionario, setFuncionario]= useState(null);
     const [funcionarioName, setFuncionarioName]= useState(false);
     const [nameCondomino, setNameCondominio] =useState()
+    const [ estado, setEstado] =useState(false)
 
     useEffect(()=>{
         getData()
@@ -31,18 +34,24 @@ export default function Header({}){
     }
     FnameCondominio()
 
+    function Pop(){
+      setEstado(!estado)
+    }
+
     return(
     <>
     <StatusBar/>
-
+    {estado && <PopAction navigation={navigation}/>  }
     <View style={styles.container}>
         <View style={styles.containerHeader}>
             <Text style={styles.nameApp}>The Kontroll</Text>
-            <Image source={Logo} style={{width:50, height:50}}/>
+            <TouchableOpacity style={styles.borderLogo} onPress={Pop}>
+             <Image source={Logo} style={{width:40, height:40}}/>
+            </TouchableOpacity>
         </View>
 
-        <Text style={{color:"#000", marginTop:20}}>Version:1.6.3</Text>
-        <Text style={{marginLeft:20,marginTop:20, fontSize:14, color:"#fff"}}>Condominio: {nameCondomino}</Text>
+        <Text style={{color:"#cdcdcd", marginTop:20}}>Version:1.6.3</Text>
+        <Text style={{marginLeft:20,marginTop:20, fontSize:14, color:"#fff", fontWeight:"bold"}}>Condominio: {nameCondomino}</Text>
     </View>
         
     </>
@@ -60,7 +69,7 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       borderBottomLeftRadius:40,
       paddingTop:30,
-      zIndex:9,
+      zIndex:7,
       marginBottom:-40
     },
     containerHeader:{
@@ -74,6 +83,14 @@ const styles = StyleSheet.create({
       fontSize:20,
       fontWeight:"bold",
       color:colorScheme==="light"?"#fff":"#fff",
+    },
+    borderLogo:{
+      width:50,
+      height:50,
+      backgroundColor:"#fff",
+      justifyContent:"center",
+      alignItems:"center",
+      borderRadius:50
     }
     
   });
