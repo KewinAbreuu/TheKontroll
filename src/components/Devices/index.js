@@ -2,10 +2,11 @@ import react,{useState, useEffect}from 'react'
 import {View,Text,  StyleSheet, Image, TouchableOpacity, Appearance}from 'react-native'
 
 import firebase from "../../firebaseConnection";
+import { Audio } from 'expo-av';
 
 
 export default function Devices({on,off,pressOn,pressOff,name,comando,id, status}){
-
+    const [sound, setSound] =useState();
 
     function Ligar(){
         
@@ -15,15 +16,17 @@ export default function Devices({on,off,pressOn,pressOff,name,comando,id, status
           });
 
           StatusOn()
+          SoundOn()
     }
 
     function desligar(){
         firebase.database().ref(`/${comando}`).update({
             L1:'1'
-            // L2:'1'
+            // L2:'1'S
           });
 
           StatusOff()
+          SoundOn()
     }
 
    function StatusOn(){
@@ -43,11 +46,33 @@ export default function Devices({on,off,pressOn,pressOff,name,comando,id, status
     })
 }
 
+// AUDIO CLICK
+async function SoundOn() {
+    console.log('Loading Sound');
+    const { sound } = await Audio.Sound.createAsync(
+       require('../../audios/mouseClick.mp3')
+    );
+    setSound(sound);
+
+    console.log('Playing Sound');
+    await sound.playAsync(); }
+
+  useEffect(() => {
+    return sound
+      ? () => {
+          console.log('Unloading Sound');
+          sound.unloadAsync(); }
+      : undefined;
+  }, [sound]);
+// AUDIO CLICK
+
+
     function Delete(){
         firebase.firestore().collection('devices')
         .doc(id)
         .delete()
     }
+ 
 
     return(
         <View style={{flexDirection:"column", justifyContent:"center", alignItems:"center", flex:1}}>
